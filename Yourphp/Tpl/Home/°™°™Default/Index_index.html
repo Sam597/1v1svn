@@ -1,0 +1,278 @@
+<div class="warp">
+    <div class="cont mt15">
+        <div class="hide">
+            <div class="ileft fl">
+
+                <p>
+                <YP:flash flashid="1" />
+                </p>
+
+                {$site_info['index_course_html']}
+
+
+
+
+
+                <div class="ikecheng boxbg mt14" style="height:265px;">
+                    <h3 class="ititle4">
+                        <strong class="title_name" style="margin:10px 0 0 15px;">光荣榜单</strong>
+                        <div class="imingshi2">
+                            <span class="msCur">高考</span><span>中考</span><span>小升初考</span>
+                        </div>
+                        <a href="__APP__/guangrongbangdan/" target="_blank" class="more" style="margin:10px 15px 0 0;">更多</a>
+                    </h3>
+                    <div class="clear ims_box2 hide">
+                        <div class="clear ims2">
+                            <YP:list order="listorder desc" sql="SELECT * FROM tbl_chengonganli where posid=1 and  siteid=$mysiteid and catid=46 and subcatid=3   order by listorder desc  limit 4">
+                                <dl>
+                                    <dt><a href="{$r.url}" target="_blank"  ><img src="{$r.thumb}" height="104" width="139" /></a></dt>
+                                    <dd class="dd2"><a href="{$r.url}" target="_blank"  >{$r.title}</a></dd>
+                                    <dd style="text-align: center">来自<font color="#ff6600">[{$r.student_school}]</font></dd>
+                                    <dd style="text-align: center">考入<font color="#ff6600">[{$r.admission}]</font></dd>
+                                </dl> 
+                            </YP:list>
+                        </div>
+                        <div class="clear ims2">
+                            <YP:list order="listorder desc" sql="SELECT * FROM tbl_chengonganli where posid=1 and  siteid=$mysiteid and catid=46 and subcatid=2     order by listorder desc  limit 4">
+                                <dl>
+                                    <dt><a href="{$r.url}" target="_blank"  ><img src="{$r.thumb}" height="104" width="139" /></a></dt>
+                                    <dd class="dd2"><a href="{$r.url}" target="_blank"  >{$r.title}</a></dd>
+                                    <dd style="text-align: center">来自<font color="#ff6600">[{$r.student_school}]</font></dd>
+                                    <dd style="text-align: center">考入<font color="#ff6600">[{$r.admission}]</font></dd>
+                                </dl> 
+                            </YP:list>
+                        </div>
+                        <div class="clear ims2">
+                            <YP:list order="listorder desc" sql="SELECT * FROM tbl_chengonganli where posid=1 and  siteid=$mysiteid and catid=46 and subcatid=1     order by listorder desc  limit 4">
+                                <dl>
+                                    <dt><a href="{$r.url}" target="_blank"  ><img src="{$r.thumb}" height="104" width="139" /></a></dt>
+                                    <dd class="dd2"><a href="{$r.url}" target="_blank"  >{$r.title}</a></dd>
+                                    <dd style="text-align: center">来自<font color="#ff6600">[{$r.student_school}]</font></dd>
+                                    <dd style="text-align: center">考入<font color="#ff6600">[{$r.admission}]</font></dd>
+                                </dl> 
+                            </YP:list>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <!--left end-->
+            <div class="iright fr">
+                <div class="ikecheng boxbg" style="height:292px;">
+                    <h3 class="ititle2">
+                        <strong class="title_name">最新动态</strong>
+                        <a href="__APP__/zixun" target="_blank" class="more">更多</a>
+                    </h3>
+                    <ul class="ul01 clear">
+                        <YP:list order="listorder desc" sql="SELECT a.*,b.catname FROM tbl_article a left join tbl_category b on a.catid=b.id where  a.posid=1 and  a.siteid=$mysiteid and a.catid in(2,3,10,16,35)  order by listorder desc  limit 8">
+                            <li><a href="{$r.url}" target="_blank"  ><span>[{$r.catname}]</span>{$r.title|str_cut=###,26}</a></li>
+                        </YP:list>
+                    </ul>
+                </div>
+
+                {$site_info['index_special_html']}
+
+
+                <div class="ikecheng boxbg mt14" style="height:265px;">
+                    <h3 class="ititle2">
+                        <strong class="title_name">进步分享</strong>
+                        <a href="__APP__/jinbudianfan/" class="more" target="_blank">更多</a>
+                    </h3>
+                    <ul class="ul011 clear">
+                        <!--                        <li style="background: #f3f3f3"><a href="{$r.url}" target="_blank"  >
+                                                        <span style="float: left;width: 50px">姓名</span>
+                                                        <span style="float: left;width: 100px">来自学校</span>
+                                                        <span style="float: left;width: 50px">辅导前</span>
+                                                        <span style="float: left;width: 50px">辅导后</span>
+                                                    </a>
+                                                </li>-->
+                        <YP:list order="listorder desc" sql="SELECT * FROM tbl_chengonganli where posid=1 and  siteid=$mysiteid and catid=47  order by listorder desc  limit 7">
+                            <li><a href="{$r.url}" target="_blank"  >
+                                    <span style="float: left;width: 80px">{$r.title|str_cut=###,26}</span>
+                                    <span style="float: left;width: 100px">{$r.student_school}</span>
+                                    <span style="float: left;width: 50px">{$r.improvescore}</span>
+                                    <span style="float: left;width: 20px"><img src="/Yourphp/Tpl/Home/Default/Public/images/index_jb.jpg" /></span>
+                                </a>
+                            </li>
+                        </YP:list>
+
+                    </ul>
+                </div>
+            </div>
+            <!--right end-->
+        </div>
+        <!--ipart 01 end-->
+        <div class="ikecheng boxbg mt14" style="height:174px;">
+            <h3 class="ititle3">
+                <strong class="title_name">权威统计</strong>
+            </h3>
+            <YP:list order="listorder desc" sql="SELECT * FROM tbl_ad  where postion=10 and  siteid=$mysiteid  order by listorder desc  limit 0,1">
+                <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered" ></a></p>
+            </YP:list>
+        </div>
+
+        <div class="hide">
+            <div class="ileft fl">
+                <div class="ikecheng boxbg mt14" style="height:280px;">
+                    <h3 class="ititle4">
+                        <strong class="title_name" style="margin:10px 0 0 15px;">名师之队</strong>
+                        <div class="imingshi">
+                            <span class="msCur">高中</span><span>初中</span><span>小学</span>
+                        </div>
+                        <a href="__APP__/jiaoshi" target="_blank" class="more" style="margin:10px 15px 0 0;">更多</a>
+                    </h3>
+                    <div class="clear ims_box hide">
+                        <div class="clear ims">
+
+                            <YP:list order="listorder desc" sql="SELECT * FROM tbl_teacher where posid=1 and  siteid=$mysiteid and  find_in_set(3,grade_ids) order by listorder desc  limit 4">
+                                <dl>
+                                    <dt><a href="{$r.url}" target="_blank"  ><img src="{$r.thumb}" height="104" width="139" /></a></dt>
+                                    <dd class="dd2"><a href="{$r.url}" target="_blank"  >{$r.title}</a></dd>
+                                    <dd>{$r.desc|strip_tags|str_cut=###,70}</dd>
+                                </dl> 
+                            </YP:list>
+
+                        </div>
+                        <div class="clear ims">
+                            <YP:list order="listorder desc" sql="SELECT * FROM tbl_teacher where posid=1 and  siteid=$mysiteid and find_in_set(2,grade_ids)  order by listorder desc  limit 4">
+                                <dl>
+                                    <dt><a href="{$r.url}" target="_blank"  ><img src="{$r.thumb}" height="104" width="139" /></a></dt>
+                                    <dd class="dd2"><a href="{$r.url}" target="_blank">{$r.title}</a></dd>
+                                    <dd>{$r.desc|strip_tags|str_cut=###,70}</dd>
+                                </dl> 
+                            </YP:list>
+                        </div>
+                        <div class="clear ims">
+                            <YP:list order="listorder desc" sql="SELECT * FROM tbl_teacher where posid=1 and  siteid=$mysiteid and find_in_set(1,grade_ids)  order by listorder desc  limit 4">
+                                <dl>
+                                    <dt><a href="{$r.url}" target="_blank"  ><img src="{$r.thumb}" height="104" width="139" /></a></dt>
+                                    <dd class="dd2"><a href="{$r.url}" target="_blank"  >{$r.title}</a></dd>
+                                    <dd>{$r.desc|strip_tags|str_cut=###,70}</dd>
+                                </dl> 
+                            </YP:list>
+                        </div>
+                    </div>
+                </div>
+                {$site_info['index_media_html']}
+            </div>
+            <!--left end-->
+            <div class="iright fr">
+                <div class="ikecheng boxbg mt14" style="height:280px;">
+                    <h3 class="ititle2">
+                        <strong class="title_name" >高端访谈</strong>
+                        <a href="__APP__/fangtan" target="_blank" class="more">更多</a>
+                    </h3>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_article where posid=1 and siteid=$mysiteid and catid=53  order by listorder desc  limit 1">
+                        <dl class="dl01">
+                            <dt><a href="{$r.url}" target="_blank"  ><img src="{$r.thumb}"  height="104" width="139" /></a></dt>
+                            <dd style="color:#666; font-size:14px;"><a href="{$r.url}" target="_blank"  >{$r.title}</a></dd>
+                            <dd>{$r.desc}</dd>
+                        </dl>
+                    </YP:list>
+                    <ul class="ul01 clear">
+                        <YP:list order="listorder desc" sql="SELECT * FROM tbl_article where posid=1 and siteid=$mysiteid and catid=53  order by listorder desc  limit 1,3">
+                            <li><a href="{$r.url}" target="_blank"  ><font style="color:#999">[高端访谈]</font>{$r.title|str_cut=###,26}</a></li>
+                        </YP:list>
+                    </ul>
+
+
+
+                </div>
+                <div class="ikecheng boxbg mt14" style="height:258px;">
+                    <h3 class="ititle2">
+                        <strong class="title_name">媒体报道</strong>
+                        <a href="__APP__/baodao/" target="_blank" class="more">更多</a>
+                    </h3>
+                    <ul class="ul01 clear">
+                        <YP:list order="listorder desc" sql="SELECT * FROM tbl_article where posid=1 and  siteid=$mysiteid and catid=35  order by listorder desc  limit 8">
+                            <li><a href="{$r.url}" target="_blank"  ><font style="color:#999999;font-size:14px">[{$r.copyfrom}]</font>{$r.title|str_cut=###,26}</a></li>
+                        </YP:list>
+                    </ul>
+                </div>
+            </div>
+            <!--right end-->
+        </div>
+
+
+
+        <div class="hide">
+            <div class="ileft fl">
+                <div class="ikecheng  mt14" style="height:230px;border:none">
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=10  and  siteid=$mysiteid  order by listorder desc  limit 1,1">
+                        <p><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered" ></a></p>
+                    </YP:list>
+                </div>
+            </div>
+            <!--left end-->
+            <div class="iright fr">
+                {$site_info['index_faq_html']}
+            </div>
+            <!--right end-->
+        </div>
+
+
+        <div class="hide">
+            <div class="ileft fl">
+                {$site_info['index_model_html']}
+
+            </div>
+            <!--left end-->
+            <div class="iright fr">
+                {$site_info['index_story_html']}
+            </div>
+            <!--right end-->
+        </div>
+
+
+        <!--ipart 02 end-->
+        <div class="ikecheng boxbg mt14" style="height:396px;">
+            <h3 class="ititle3">
+                <strong class="title_name">校区分布</strong>
+            </h3>
+            <div class="ixiaoqu">
+                <div class="imap fl">
+                    <p class="p07" style="height:36px"></p>
+                    <p class="p09">
+                        {$site_info['index_map_html']}
+                    </p>
+                </div>
+                <div class="iwangdian fr">
+                    <p class="p10">总部咨询热线：400-000-9755 热线时间:8：30-20:30</p>
+                    <div class="hide ishanghai clear">
+
+                        <YP:list sql="SELECT * FROM tbl_schoolinfo where posid=1 and siteid=$mysiteid order by listorder desc limit 8">
+                            <?php static $i = 65; ?>
+                            <dl>
+                                <dt><strong><?php echo chr($i) ?>.{$r.title}</strong><span>{$r.phone}</span></dt>
+                                <dd>{$r.address}</dd>
+                            </dl>
+                        </YP:list>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ikecheng boxbg mt14" style="height:124px;">
+            <h3 class="ititle3">
+                <strong class="title_name">友情链接</strong>
+            </h3>
+            <div class="ifirend">
+                <YP:list sql="SELECT * FROM tbl_link where  siteid=$mysiteid order by listorder desc limit 18">
+                    <a href="{$r['siteurl']}" target="_blank" title="{$r['name']}">{$r['name']}</a>
+                </YP:list>
+            </div>
+        </div>
+    </div>
+    <!--cont part02 end-->
+
+</div>
+
+</div>

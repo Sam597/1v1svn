@@ -1,0 +1,58 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=7 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+</YP:list>
+<div class="left">
+    <!-- <div class="pos"><b></b><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></div>
+                    <div class="list">
+                    <ul class="txt">
+                            <volist name="list" id="r">
+                                            <li><span class="date">[{$r.createtime|toDate=###,'Y-m-d'}]</span><a href="{$r.url}" target="_blank">{$r.title}</a></li>
+                            </volist> 
+                    </ul></div>
+                    
+                    <div id="pages" class="page">{$pages}</div>
+                    <br>
+    </div> -->
+
+
+    <div class="cont02">
+        <div class="cont_left fl">
+<!--            <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="$catid" space=" &gt; " /></span></h3>-->
+            <div class="newslist">
+
+                <volist name="list" id="r">
+                    <dl>
+                        <dt>
+                        <a href=<if condition="$r.jumpurl eq ''">{$r.url}<else/>{$r.jumpurl}</if> target="_blank">
+                            <img src="<if condition="$r.thumb eq ''">/Yourphp/Tpl/Home/Default/Public/images/nopic.jpg<else/>{$r.thumb}</if>" width="86" height="63"/>
+                        </a>
+                        </dt>
+                        <dd class="mb4">
+                            <a href=<if condition="$r.jumpurl eq ''">{$r.url}<else/>{$r.jumpurl}</if> target="_blank">
+                                {$r.title}
+                            </a>
+                        </dd>
+                        <dd>{$r.description}</dd>
+                    </dl>
+                </volist>
+
+                <div id="pages" class="page">{$pages}</div>
+                <br />
+            </div>
+        </div>
+        <div class="cont_right fr">
+            <h3 class="title04">精彩专题</h3>
+            <ul class="kclist">
+                <YP:subcat catid="36" id="cid" key="ii">
+                    <li id="c{$cid['id']}"><a  href="{$cid['url']}" >{$cid['catname']}</a></li>
+                </YP:subcat>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

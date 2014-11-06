@@ -1,0 +1,49 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=6 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <div class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></div>
+</YP:list>
+<div class="weizhi">
+    <span class="fl"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span></span>
+    <span class="fr" >
+        <form method="get" action="/Search/index">
+            <input type="text" name="search" class="search" placeholder="请输入搜索信息" value="" />
+            <input type="submit" class="search_btn" value="" />
+        </form>
+    </span>
+</div>
+<div class="xyxq">
+    <div class="ms_left">
+        <img src="/Yourphp/Tpl/Home/Default/Public/images/under.gif" style=" margin-left: 310px;"/>
+        <h3 class="title01">此功能正在改版，敬请期待...</h3>
+    </div>
+    <!--名师left end-->
+    <div class="ms_right">
+        <p class="pjj" style="margin-top: 15px;"><img src="/Yourphp/Tpl/Home/Default/Public/images/1+1.gif" /></p>
+        <div class="jxgs">
+            <h3 class="title24">推荐文章</h3>
+            <ul class="ul01">
+                <YP:list sql="SELECT * FROM tbl_article where  siteid=$mysiteid and catid=$catid  order by listorder desc limit 8">
+                    <li>
+                        <a href="{$r.url}" <if condition="$r.id eq $id">class="aCur1"</if>  title="{$r.title}">{$r.title|str_cut=###,28}</a>
+                    </li>
+                </YP:list>
+            </ul>
+        </div>
+        {if $keywords}
+        <div class="jxgs">
+            <h3 class="title24">相关阅读</h3>
+            <ul class="ul01">
+                <yp:tags moduleid="2" keywords="keywords" list="1"><li>·<a href="{$r.url}">{$r.title}</a></li></yp:tags>
+            </ul>
+        </div>
+        {/if}
+    </div>
+
+</div>
+
+
+
+
+
+
+
+

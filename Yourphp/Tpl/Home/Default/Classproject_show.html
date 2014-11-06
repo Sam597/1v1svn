@@ -1,0 +1,94 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=3 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <div class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></div>
+</YP:list>
+<div class="weizhi">
+    <span class="fl"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span></span>
+        <span class="fr" >
+        <form method="get" action="/Search/index">
+            <input type="text" name="search" class="search" placeholder="请输入搜索信息" value="" />
+            <input type="submit" class="search_btn" value="" />
+        </form>
+    </span>
+</div>
+<div class="xyxq">
+    <div class="xy_left">
+        <div class="xt_picbox">
+            <empty name="thumb"><img src="/Yourphp/Tpl/Home/Default/Public/images/pic23.jpg" /><else /><img src="{$thumb}" width="436" height="309"></empty>
+        </div>
+    </div>
+    <div class="xy_right">
+        <div class="rw_right">
+            <p class="anli_title2">{$title}</p>
+            <div class="zixu1">
+                <div class="zx_fot1">
+                    <div class="zx_top1">
+                        <p class="p21">{$desc}</p>
+                    </div>
+                </div>
+            </div>
+            <p class="p22">年级：{$grade_id}</p>
+            <p class="p22">科目：{$course}</p>
+           <!-- <p class="p22">学期：{$term}</p> -->
+            <p class="p22">价格：{$oneprice}</p>
+            <p class="p22">类型：{$level}</p> 
+          <p class="p22">校区：<span class="span20">所有校区<a href="__APP__/xiaoqu/show/{$school2id}.html" target="_blank" style="color:#ff6600">{$school_name}<?php echo implode(',',$school_ids); ?></a></span></p>
+            <p style="margin-top: 20px;">
+                <input type="button" class="btn20" onclick="window.location.href='/baoming/?id={$id}&coursename={$title}'" />
+                <input type="button" class="btn21" onclick="window.location.href='http://qiao.baidu.com/v3/?module=default&controller=webim&action=index&siteid=1665870'" />
+            </p>
+        </div>
+    </div> 
+</div>
+<div class="cont_sm2">
+    <h3 class="title22"><strong>课程介绍</strong></h3>
+    <div class="cont20">
+        <p class="p26">
+            {$content}
+        </p>
+    </div>
+    <h3 class="title22"><strong>授课周期</strong></h3>
+    <div class="cont20">
+        <p class="p26">
+            {$courseloop}
+        </p>    </div>
+    <h3 class="title22"><strong>面对对象</strong></h3>
+    <div class="cont20">
+        <p class="p26">
+            {$coursepeople}
+        </p>    </div>
+    <h3 class="title22"><strong>教学特色</strong></h3>
+    <div class="cont20">
+        <p class="p26">
+            {$teachadv}
+        </p>    </div>
+    <h3 class="title22"><strong>师资配备</strong></h3>
+    <div class="cont20">
+        <p class="p26">
+            {$teacherterm}
+        </p>    </div>
+    <h3 class="title22"><strong>学员案例</strong></h3>
+    <div class="cont20">
+        <div class="p28">
+            <dl class="dl21">
+                <dt><img src="/Yourphp/Tpl/Home/Default/Public/images/pic24.jpg" /></dt>
+                <dd class="dd20">颜浩</dd>
+                <dd class="dd20">所在年级：高中二年级</dd>
+                <dd class="dd20">辅导科目：高中：语文　数学</dd>
+                <dd class="dd20">辅导时间：60天</dd>
+                <dd class="dd20">满意度：★★★★★</dd>
+                <dd class="dd21">辅导前分析：颜浩的总体成绩比较好，考试成绩在班级排到10名（共50名）左右。学员性格倔强，自尊心强...<a href="#" class="span20">[详细]</a></dd>
+                <dd class="dd21">培养计划：针对学员情况，我们为他安排了心理辅导老师加强学员心态调整，并鼓励他，提高自信心。帮助...<a href="#" class="span20">[详细]</a></dd>
+            </dl>
+            <dl class="dl21" style=" padding-left:80px;">
+                <dt><img src="/Yourphp/Tpl/Home/Default/Public/images/pic24.jpg" /></dt>
+                <dd class="dd20">颜浩</dd>
+                <dd class="dd20">所在年级：高中二年级</dd>
+                <dd class="dd20">辅导科目：高中：语文　数学</dd>
+                <dd class="dd20">辅导时间：60天</dd>
+                <dd class="dd20">满意度：★★★★★</dd>
+                <dd class="dd21">辅导前分析：颜浩的总体成绩比较好，考试成绩在班级排到10名（共50名）左右。学员性格倔强，自尊心强...<a href="#" class="span20">[详细]</a></dd>
+                <dd class="dd21">培养计划：针对学员情况，我们为他安排了心理辅导老师加强学员心态调整，并鼓励他，提高自信心。帮助...<a href="#" class="span20">[详细]</a></dd>
+            </dl>
+        </div>
+    </div> 
+</div>

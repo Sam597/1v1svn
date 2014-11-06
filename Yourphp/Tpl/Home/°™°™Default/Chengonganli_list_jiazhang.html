@@ -1,0 +1,41 @@
+
+<div class="warp">
+    <YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=5 and  siteid=$mysiteid  order by listorder desc  limit 1">
+        <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+    </YP:list>
+    <div class="cont02">
+        <div class="cont_left fl">
+<!--            <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></h3>-->
+
+            <div class="subnav">
+                <ul>
+                    <li><a href="/{$catdir}/?subcatid=11">家长来信</a></li>
+                    <li><a href="/{$catdir}/?subcatid=12">学生来信</a></li>
+                </ul>
+            </div>
+            <script>
+                $('.subnav li:eq(<?php echo $_GET['subcatid']-11 ?>)').addClass('C_curr');
+            </script>
+            <div class="bdlist">
+                <volist name="list" id="r">
+                    <dl>
+                        <dt><img src="{$r.pic}" height="108" width="146" /><p class="p18"><img src="images/s_yw.png" /></p></dt>
+                        <dd class="dd3"><strong>{$r.title}</strong></dd>
+                        <dd class="dd5">{$r.desc}</dd>
+                        <dd class="dd4"><span></span><a href="{$r.url}">查看详情</a></dd>
+                    </dl>
+                </volist>
+                <div id="pages" class="page">{$pages}</div>
+            </div>
+        </div>
+        <div class="cont_right fr">
+            <h3 class="title04">成功案例</h3>
+            <ul class="kclist">
+                <YP:subcat catid="24" id="cid" key="ii">
+                    <li id="c{$cid['id']}"><a href="{$cid['url']}" >{$cid['catname']}</a></li>
+                </YP:subcat>
+            </ul>
+        </div>
+    </div>
+    <!--cont part02 end--></div>
+

@@ -1,0 +1,64 @@
+<style>
+    .ul02 li a{color:#999}
+    .ul02 li{line-height: 28px;height: 28px;overflow: hidden}
+</style> 
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=7 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <div class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></div>
+</YP:list>
+<div class="weizhi">
+    <span class="fl"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span></span>
+    <span class="fr" >
+        <form method="get" action="/Search/index">
+            <input type="text" name="search" class="search" placeholder="请输入搜索信息" value="" />
+            <input type="submit" class="search_btn" value="" />
+        </form>
+    </span>
+</div>
+<div class="xyxq">
+    <div class="ms_left">
+
+        <YP:subcat catid="catid" order="updatetime desc" id="cid" key="ii">
+            <div class="zx_cont">
+                <h3 class="title03"><span><a href="{$cid['url']}">{$cid['catname']}</a></span><a class="more03" href="{$cid['url']}">{:L(more)}>></a></h3>
+                <ul class="ul02">
+                    <YP:list name="Article" field="*" order="createtime desc" where="siteid=$mysiteid"  catid="$cid[arrchildid]" limit="6">
+                        <li><a href="{$r.url}" target="_blank">
+                                    <if condition="$r.teacher_id neq '0'">
+                                    [{$r.teacher_id|get_teachername='title'}]
+                                    </if>
+                                    <if condition="$r.copyfrom neq ''">
+                                        [{$r.copyfrom}]
+                                    </if>  
+                                {$r.title}</a></li>
+                    </YP:list> 
+                </ul>
+            </div>
+        </YP:subcat>
+
+
+
+
+    </div>
+    <!--名师left end-->
+    <div class="ms_right">
+        <h3 class="title24">分类</h3>
+        <div class="mstj3">
+            <YP:subcat catid="catid" order="updatetime desc" id="cid" key="ii">
+                <a href="{$cid['url']}">{$cid['catname']}</a>
+            </YP:subcat>
+
+        </div>
+        <p class="pjj" style="padding-top:10px; border-top:1px dashed #CCC;"><img src="/Yourphp/Tpl/Home/Default/Public/images/1+1.gif" /></p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+
+
+<form method='post' name="myform" id="myform" action="<if condition="$action_name=='add'">{:U($module_name.'/insert')}<else />{:U($module_name.'/update')}</if>">
+<table cellpadding=0 cellspacing=0 class="table_form" width="100%">
+<tr>
+		<td valign="top">区域</td>
+		<td>
+		{$sitename}
+		</td>
+</tr>
+<tr>
+		<td valign="top">校区</td>
+		<td>
+		{$schoolname}
+		</td>
+</tr>
+<tr>
+		<td valign="top">年级：</td>
+		<td>
+		<select name="grade" id="select_grade">
+			<option value="">--请选择--</option>
+		<volist name="grades" id="row">
+			<option value="{$row['name']}" {if $course_checked[grade] == $row['grade']}selected="selected"{/if}>{$row['name']}</option>
+		</volist>
+		
+		</td>
+</tr>
+<tr>
+		<td valign="top">学期：</td>
+		<td>
+		<select name="term" id="select_term">
+			<option value="">--请选择--</option>
+		<volist name="terms" id="row">
+			<option value="{$row['name']}" {if $course_checked[term] == $row['term']}selected="selected"{/if}>{$row['name']}</option>
+		</volist>
+		
+		</td>
+</tr>
+<tr>
+		<td valign="top">学科：</td>
+		<td>
+		{if $id!=''}
+			<volist name="courses" id="row">
+			<volist name="course_checked" id="row_ed">
+					<label><input type="checkbox" name="course[]" value="{$row['name']}" {if $row_ed==$row[name]}checked="checked"{/if} />&nbsp;{$row['name']}&nbsp;</label>	
+			</volist>
+			</volist>
+		{else}
+			<volist name="courses" id="row">
+					<label><input type="checkbox" name="course[]" value="{$row['name']}" />&nbsp;{$row['name']}&nbsp;</label>
+			</volist>
+		{/if}
+		</td>
+</tr>
+</table>
+<div class="btn">
+<input type="hidden" name="forward" value="{$_SERVER['HTTP_REFERER']}" />
+<input type="hidden" name="username" value="{$username}" />
+<input type="hidden" name="siteid" value="{$siteid}" />
+<input type="hidden" name="id" value="{$id}" />
+<input type="hidden" name="schoolid" value="{$schoolid}" />
+
+<input type="hidden" name="sitename" value="{$sitename}" />
+<input type="hidden" name="schoolname" value="{$schoolname}" />
+
+<INPUT TYPE="submit"  value="{:L('dosubmit')}" class="button" >
+<input TYPE="reset"  value="{:L('reset')}" class="button">
+</div>
+</form>
+</div>
+
+
+<script type="text/javascript">
+     $('#select_area').live('change', function(){
+		var area_id = $(this).val();
+		var options = '<option value="">--请选择--</option>';
+		if(area_id!=''){
+			$.getJSON('{:U("User/ajax_school_info")}', {area_id:area_id}, function(result){
+				if(result.status){
+					if(result.data != null){
+						$.each(result.data, function(key, val){
+							options += '<option value='+val.typeid+'>'+val.name+'</option>';
+						});
+					}
+				}
+				$('#school_cont').html(options);
+			});
+		}else{
+			$('#school_cont').val('<option value="">--请选择--</option>');
+		}
+	});
+     </script>
+
+</body></html>

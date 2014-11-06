@@ -1,0 +1,38 @@
+
+<style>
+.list ul.txt li {border:0;float:left;width:135px;}
+</style>
+<div class="left">
+
+	<p class="banner"><img src="/Yourphp/Tpl/Home/Default/Public/images/pic05.jpg" /></p>
+    <div class="cont02">
+    	<div class="cont_left fl">
+        	<h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></h3>
+            <div class="newslist">
+            
+				<div class="list">
+				<ul class="txt">
+					<volist name="list" id="r">
+							<li><a href="{:TAGURL($r)}" target="_blank">{$r.name}</a></li>
+					</volist> 
+				</ul></div>
+		
+				<div id="pages" class="page">{$pages}</div>
+				<br>
+            </div>
+	            
+            </div>
+    	<div class="cont_right fr">
+        	<h3 class="title04">新闻中心</h3>
+            <ul class="kclist">
+            	<YP:subcat catid="1" id="cid" key="ii">
+            	    <li><a href="{$cid['url']}" >{$cid['catname']}</a></li>
+	            </YP:subcat>
+            </ul>
+        </div>
+</div>
+
+
+
+
+

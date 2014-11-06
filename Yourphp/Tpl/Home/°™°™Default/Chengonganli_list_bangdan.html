@@ -1,0 +1,44 @@
+<div class="warp">
+    <YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=5 and  siteid=$mysiteid  order by listorder desc  limit 1">
+        <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+    </YP:list>
+    <div class="cont02" style="background: none">
+        <div class="cont_left fl">
+<!--            <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></h3>-->
+
+            <div class="subnav">
+                <ul>
+                    <li><a href="/{$catdir}/?subcatid=1">小升初考</a></li>
+                    <li><a href="/{$catdir}/?subcatid=2">中考</a></li>
+                    <li><a href="/{$catdir}/?subcatid=3">高考</a></li>
+                </ul>
+            </div>
+            <script>
+                $('.subnav li:eq(<?php echo $_GET['subcatid']-1 ?>)').addClass('C_curr');
+            </script>
+            <div class="bdlist">
+                <volist name="list" id="r">
+                    <dl>
+                        <dt class="anli-listbg"><a target="_blank"  href="{$r.url}"><img src="{$r.thumb}" height="112" width="146" /></a>
+                        <!--                        <p class="p18"><img src="images/s_yw.png" /></p>-->
+                        </dt>
+                        <dd class="dd3"><strong><a target="_blank"  href="{$r.url}">{$r.title}</a></strong><span style="margin-left: 15px;font-size: 12px;">来自：{$r.student_school}</span><span style="margin-left: 15px;font-size: 12px;">考入：{$r.admission}</span>
+                        <span style="margin-left: 15px;font-size: 12px;">成绩：{$r.score}</span></dd>
+                        <dd class="dd5" style="line-height: 22px;color:#999">{$r.likereason|str_cut=###,156}</dd>
+                        <dd class="dd4"><span></span><a target="_blank"  href="{$r.url}">查看详情</a></dd>
+                    </dl>
+                </volist>
+                <div id="pages" class="page">{$pages}</div>
+            </div>
+        </div>
+        <div class="cont_right fr">
+            <h3 class="title04">成功案例</h3>
+            <ul class="kclist">
+                <YP:subcat catid="24" id="cid" key="ii">
+                    <li id="c{$cid['id']}"><a href="{$cid['url']}" >{$cid['catname']}</a></li>
+                </YP:subcat>
+            </ul>
+        </div>
+    </div>
+    <!--cont part02 end--></div>
+

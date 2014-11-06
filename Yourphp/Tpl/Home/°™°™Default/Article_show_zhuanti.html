@@ -1,0 +1,41 @@
+<style>
+    .tit{font-size:18px;font-family: "微软雅黑";text-align: center;color: #666;line-height: 35px;font-weight: normal;padding: 10px 0}
+    .tit span{font-size:12px;font-family: "微软雅黑";text-align: center;color: #999;}
+    .content{font-size: 14px ;color: #666;line-height: 26px}
+    .relate-news{padding-bottom: 30px;margin-bottom: 30px}
+    .relate-news h2{font-size: 14px;background: #f3f3f3;line-height: 35px;padding: 0 10px}
+    .relate-news li{width:340px;padding-right:10px;float: left;line-height: 35px;color: #666}
+    .relate-news a{color:#666}
+</style>
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=7 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+</YP:list>
+<div class="cont02">
+    <div class="cont_left fl">
+        <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></h3>
+        <div class="newslist">
+
+            <div id="content">
+                <h1 class="tit">{$title}<br><span>{:L(time)}: {$createtime|toDate} &nbsp;&nbsp;&nbsp;&nbsp;{:L(copyfrom)}: {if  $copyfrom}{$copyfrom}{else}{$site_name}{/if}</span></h1> 
+                <span class="content">{$content}</span>
+                <div id="pages" class="page">{$pages}</div>
+                {if $keywords}
+                <!--                <br><font color="red">{:L('KEYWORD')}:<yp:tags moduleid="moduleid" keywords="keywords"><a href="{:TAGURL($r)}">{$r.name}</a>&nbsp; </yp:tags>  </font>	-->
+                <div class="relate-news">
+                    <h2>{:L('RELATED_ARTICLES')}:</h2>
+                    <ul><yp:tags moduleid="2" keywords="keywords" list="1"><li>·<a href="{$r.url}">{$r.title}</a></li></yp:tags></ul>
+                </div>
+                {/if}
+
+            </div>
+        </div>
+
+    </div>
+    <div class="cont_right fr">
+        <h3 class="title04">精彩专题</h3>
+        <ul class="kclist">
+            <YP:subcat catid="36" id="cid" key="ii">
+                <li id="c{$cid['id']}"><a  href="{$cid['url']}" >{$cid['catname']}</a></li>
+            </YP:subcat>
+        </ul>
+    </div>

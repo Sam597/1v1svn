@@ -1,0 +1,42 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=6 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+</YP:list>
+<div class="left">
+    <!-- <div class="pos"><b></b><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></div>
+                    <YP:subcat catid="catid" id="cid" key="ii">
+                                    <div class="list">
+                                    <h4 class="tit"><span><a href="{$cid['url']}">{:L(more)}>></a></span> <b><a href="{$cid['url']}">{$cid['catname']}</a></b></h4>
+                                    <ul class="txt">
+                                    <YP:list name="Article" order="id desc" catid="$cid[arrchildid]" limit="6">
+                                            <li><span class="date">[{$r.createtime|toDate=###,'Y-m-d'}]</span><a href="{$r.url}" target="_blank">{$r.title}</a></li>
+                                    </YP:list> 
+                                    </ul></div>
+                    </YP:subcat>
+                    <br> -->
+
+    <div class="cont02">
+        <div class="cont_left fl">
+<!--            <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></h3>-->
+            <div class="newslist">
+                <YP:subcat catid="catid" order="updatetime desc" id="cid" key="ii">
+                    <h4 class="tit" style="margin-top: 0"><span><a href="{$cid['url']}">{:L(more)}>></a></span> <a href="{$cid['url']}">{$cid['catname']}</a></h4>
+                    <YP:list name="Article" order="createtime desc" where="siteid=$mysiteid"  catid="$cid[arrchildid]" limit="6">
+                        <dl>
+                            <dt><a href="{$r.url}" target="_blank"><img src="<if condition="$r.thumb eq ''">/Yourphp/Tpl/Home/Default/Public/images/nopic.jpg<else/>{$r.thumb}</if>" width="86" height="63"/></A></dt>
+                            <dd class="mb4"><a href="{$r.url}" target="_blank">{$r.title}</a></dd>
+                            <dd>{$r.description|str_cut=###,180}</dd>
+                        </dl>
+                    </YP:list> 
+                </YP:subcat>
+            </div>
+        </div>
+        <div class="cont_right fr">
+            <h3 class="title04">新闻中心</h3>
+            <ul class="kclist">
+                <YP:subcat catid="catid" id="cid" key="ii">
+                    <li><a href="{$cid['url']}" >{$cid['catname']}</a></li>
+                </YP:subcat>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=8 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <div class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></div>
+</YP:list>
+<div class="weizhi">
+    <span class="fl"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span></span>
+    <span class="fr" >
+        <form method="get" action="/Search/index">
+            <input type="text" name="search" class="search" placeholder="请输入搜索信息" value="" />
+            <input type="submit" class="search_btn" value="" />
+        </form>
+    </span>
+</div>
+<div class="anlibox">
+    <div class="anli_left3">
+        <p class="p20"><img src="/Yourphp/Tpl/Home/Default/Public/images/icon20.jpg" /></p>
+        <ul class="ul09">
+            <YP:list order="listorder desc" where="siteid=$mysiteid" catid="34" limit="1">
+                <li class="liCur24">
+                    <a class="zl" href="{$r.url}" title="{$r.title}">{$r.title|str_cut=###,15}</a>
+                </li>
+            </YP:list>
+
+            <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where siteid=$mysiteid and level=2 order by listorder desc">
+                <li class="li42">
+                    <a data-areaid="{$r.id}" href="javascript:void(0)" title="{$r.name}">{$r.name}</a><span></span>
+                </li>
+            </YP:list>
+
+        </ul>
+    </div>
+    <div class="anli_right">
+        <h3 class="ditie20">{$title}</h3>
+        <div id="allmap" style="width:670px;height:500px;overflow:hidden;margin:0;"></div>
+        <div class="">
+
+            <volist name="list_xq_info" id="vo">
+                <h3 class="title22box">{$vo.area}</h3>
+                <table cellpadding="0" cellspacing="0" class="tab20">
+                    <volist name="vo.schoollist" id="vos">
+                        <tr>
+                            <td class="td21"><a href="/xiaoqu/show/{$vos.id}.html" target="_blank">{$vos.title}</a></td>
+                            <td class="td22">{$vos.address}</td>
+                            <td>{$vos.phone}</td>
+                        </tr>
+                    </volist>
+                </table>
+            </volist>
+
+        </div>
+    </div>
+</div>
+<script>
+    $('.li42 a').click(function(){
+        var $this=$(this)
+        var areaid=$this.data('areaid');
+        $.getJSON("__APP__?g=Home&m=index&a=get_schoolinfo&areaid="+areaid, function(data){
+            var siteStr=''
+            if('ok'==data.data)
+                $.each(data.info, function(i,item){
+                    siteStr+='<em class="li02" style="display:block"><a href="/xiaoqu/show/'+item.schoolinfo_id+'.html">'+item.name+'</a></em>';
+                });
+            $this.next().html(siteStr);
+        });
+    })
+</script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=FB4ac1bff44d8efd720beb51ac06546b"></script>
+<script type="text/javascript">
+    var map = new BMap.Map("allmap");
+    // 编写自定义函数,创建标注
+    function addMarker(point){
+        var marker = new BMap.Marker(point);
+        map.addOverlay(marker);
+    }
+    map.enableScrollWheelZoom(true);
+    $.each({$xq_info},function(i,n){
+        var pointarr = n.point.split(',');
+        var point = new BMap.Point(pointarr[0],pointarr[1]);
+        creatMap(point,n.title,n.address,n.phone);
+    }); 
+	map.centerAndZoom(new BMap.Point({$map_center}),12);
+    // 向地图添加标注
+    function creatMap(point,title,content,tel){
+        addMarker(point);
+        var sContent =
+            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>"+title+"</h4>" + 
+            "<p style='margin:0;line-height:1.5;font-size:13px;'>"+content+"</p>" + 
+            "<p style='margin:0;line-height:1.5;font-size:13px'>"+tel+"</p>" + 
+            "</div>";
+        var marker = new BMap.Marker(point);
+        var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+        map.centerAndZoom(point, 12);
+        map.addOverlay(marker);
+        marker.addEventListener("click", function(){          
+            this.openInfoWindow(infoWindow);
+            //图片加载完毕重绘infowindow
+            document.getElementById('imgDemo').onload = function (){
+                infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+            }
+        });
+    }
+</script>

@@ -1,0 +1,331 @@
+<style>
+    .input-text {min-width: 350px}
+    textarea{width: 600px; height:150px;}
+</style>
+<div id="msg"></div>
+<form name="myform" id="myform" action="<if condition="$action_name=='add'">{:U($module_name.'/insert')}<else />{:U($module_name.'/update')}</if>&iscreatehtml=1" method="post">
+<div id="filelist" class="hide"></div>
+<div class="error"><ul></ul></div>
+
+{if $module_name=='Guestbook'|| $module_name=='Signup' || $module_name=='Feedback'}
+<div id="showCopy" style="padding:10px;"><a href="#">显示可复制表单</a></div>
+<div id="copyForm" style="display:none">
+    <table cellpadding=0 cellspacing=0 class="table_form" width="100%">
+        <volist name="fields" id="r">
+            <if condition="!empty($r['status'])">
+                <tr>
+                    <td width="10%" ><if condition="$r['required']"><font color="red">*</font></if>{$r.name}</td>
+                <td width="90%" id="box_p{$r['field']}">
+                    {$r|getform=$pform,###}
+                </td>
+                </tr>
+            </if>
+        </volist>
+    </table>
+    <div style="height:30px;background: #f1f1f1;"></div>
+</div>
+{/if}
+
+<table cellpadding=0 cellspacing=0 class="table_form" width="100%">
+    <volist name="fields" id="r">
+        <if condition="!empty($r['status'])">
+            <tr>
+                <td width="10%" ><if condition="$r['required']"><font color="red">*</font></if>{$r.name}</td>
+            <td width="90%" id="box_{$r['field']}">
+                {$r|getform=$form,###}
+            </td>
+            </tr>
+        </if>
+    </volist>
+</table>
+
+<script>
+    $('#showCopy').click(function(){
+        $('#copyForm').slideDown();
+        $('#box_pschoolid').html($('#box_schoolid').html());
+    })
+</script>
+<div id="bootline"></div>
+<div id="btnbox" class="btn">
+    <if condition="$vo['id']!=''"><input TYPE="hidden" name="id" value="{$vo.id}"></if>
+    <input type="hidden"  name="lang" value="{$langid}" />
+    <input type="hidden" name="forward" value="{$_SERVER['HTTP_REFERER']}" />
+    <INPUT TYPE="submit"  value="{:L('dosubmit')}" class="button" >
+    <input TYPE="reset"  value="{:L('cancel')}" class="button">
+</div>
+</form>
+</div>
+<script>
+    
+    
+    if({$groupid}==1){
+        var sid=$('#schoolid').val(),//单选校区
+        sids=$('#school_ids').val(),//多选校区
+        curr_siteid='{$vo.siteid}'?'{$vo.siteid}':0;
+        //单选
+        if($('input[name=schoolid]').length>0){
+            if(sid!=0){
+                //获取第一层
+                $.getJSON("__APP__?g=Admin&m=Content&a=get_site&schoolid="+sid, function(data){
+                    $('#schoolid').replaceWith('<span id=schoolid>'+data.info.name+'<a id="editschool" href="javascript:;">[修改]</a></span>');        
+                });
+                $('form').on('click','#editschool',function(){
+                    select_school();
+                })
+            }else{         
+                if(curr_siteid!=0){
+                    //获取第一层
+                    $.getJSON("__APP__?g=Admin&m=Content&a=get_sitename&siteid="+curr_siteid, function(data){
+                        $('#schoolid').replaceWith('<span id=schoolid>'+data.info.name+'<a id="editschool" href="javascript:;">[修改]</a></span>'); 
+                    });
+                    $('form').on('click','#editschool',function(){
+                        select_school();
+                    })
+                }
+                else{
+                    select_school();
+                }         
+            }
+        }
+        
+        //多选
+        if($('input[name=school_ids]').length>0){
+            if(sids!=0){
+                //获取第一层
+                $.getJSON("__APP__?g=Admin&m=Content&a=get_sitename&siteid="+curr_siteid, function(data){
+                    $('#box_school_ids input').replaceWith('<span id=site_name>'+data.info.name+'</span><span id="schooled_box"></span><span id="schoolids_box"></span>'); 
+                    arr_sid=sids.split(',');
+                    $.getJSON("__APP__?g=Admin&m=Content&a=get_school&siteid="+curr_siteid+"&levelid=3", function(data){
+                        var siteStr='';
+                        $.each(data.info, function(i,item){
+                            var checked='';
+                            if(-1!=jQuery.inArray(item.id, arr_sid)){
+                                checked='checked'
+                            } 
+                            siteStr+='<input name="chosen-school_ids" type="checkbox" value="'+item.id+'" '+checked+' />'+item.name+'&nbsp;';         
+                        });
+                        $('#schooled_box').html(siteStr);
+                    });
+        
+                });
+
+                //选中
+                $('form').on('click','input[name=chosen-school_ids]',function(){
+                    var school_ids =[];    
+                    $('input[name=chosen-school_ids]:checked').each(function(){    
+                        school_ids.push($(this).val());    
+                    }); 
+                    if(0==school_ids.length){
+                        alert('至少选择一个分类');
+                        return;
+                    }else{
+                        $('#schoolids_box').html('<input type="hidden" name="school_ids" value='+school_ids+'>');
+                    }              
+                })
+            
+
+            }else{         
+                if(curr_siteid!=0){
+                    //获取第一层
+                    $.getJSON("__APP__?g=Admin&m=Content&a=get_sitename&siteid="+curr_siteid, function(data){
+                        $('#schoolid').replaceWith('<span id=schoolid>'+data.info.name+'<a id="editschool" href="javascript:;">[修改]</a></span>'); 
+                    });
+                    $('form').on('click','#editschool',function(){
+                        select_schools();
+                    })
+                }
+                else{
+                    select_schools();
+                }         
+            }
+        }
+    }else{
+        $('input[name=schoolid],input[name=siteid]').remove();
+    }    
+    
+    
+    
+    
+    var cid=$('#course_id').val();
+    if(cid!=0){
+        //获取第一层
+        $.getJSON("__APP__?g=Admin&m=Content&a=get_gc&cid="+cid, function(data){
+            $('#course_id').replaceWith('<span id=course_id>'+data.info.gname + data.info.name+'<a id="editcourse" href="javascript:;">[修改]</a></span>');
+            
+        });
+        $('form').on('click','#editcourse',function(){
+            select_course();
+        })
+    }else{
+        select_course();
+    }
+    function select_course(){
+        //获取第一层
+        $.getJSON("__APP__?g=Admin&m=Content&a=get_grade", function(data){
+            var siteStr='<select id="grade_id" name="grade_id"><option value="">请选择</option>'
+            $.each(data.info, function(i,item){
+                siteStr+='<option value="'+item.id+'">'+item.name+'</option>';
+            });
+            siteStr+='</select><span id="aa"></span>';
+            $('#course_id').replaceWith(siteStr);
+        });
+        //联动
+        $('form').on('change','#grade_id',function(){
+            //获取第二层
+            var grade_id = $(this).val();
+            $.getJSON("__APP__?g=Admin&m=Content&a=get_course&grade_id="+grade_id, function(data){
+                var siteStr='<select id="course_id" name="course_id">'
+                $.each(data.info, function(i,item){
+                    siteStr+='<option value="'+item.id+'">'+item.name+'</option>';
+                });
+                siteStr+='</select>';
+                $('#aa').html(siteStr);
+            });
+        })  
+            
+    }
+  
+  
+    var lid=$('#level_id').val();
+    $.getJSON("__APP__?g=Admin&m=Content&a=get_level", function(data){
+        var siteStr='<select id="level_id" name="level_id"><option value="">请选择</option>'
+        $.each(data.info, function(i,item){
+            if(lid==item.id)
+                siteStr+='<option selected="selected" value="'+item.id+'">'+item.name+'</option>';
+            else
+                siteStr+='<option value="'+item.id+'">'+item.name+'</option>';
+        });
+        siteStr+='</select>';
+        $('#level_id').replaceWith(siteStr);
+    });   
+    
+    var tid=$('#term_id').val();
+    $.getJSON("__APP__?g=Admin&m=Content&a=get_term", function(data){
+        var termStr='<select id="term_id" name="term_id"><option value="">请选择</option>'
+        $.each(data.info, function(i,item){
+            if(tid==item.id)
+                termStr+='<option selected="selected" value="'+item.id+'">'+item.title+'</option>';
+            else
+                termStr+='<option value="'+item.id+'">'+item.title+'</option>';
+        });
+        termStr+='</select>';
+        $('#term_id').replaceWith(termStr);
+    });   
+            
+    //多选
+    function select_schools(){
+        //获取第一层
+        $.getJSON("__APP__?g=Admin&m=Content&a=get_site", function(data){
+            var siteStr='<select id="siteid" name="siteid"><option value="0">请选择</option>'
+            $.each(data.info, function(i,item){
+                siteStr+='<option value="'+item.id+'">'+item.name+'</option>';
+            });
+            siteStr+='</select><span id="school_lists"></span><span id="schoolids_box"></span>';
+            $('#school_ids').replaceWith(siteStr);
+        });
+        //联动
+        $('form').on('change','#siteid',function(){
+            //获取所有分校
+            var siteid = $(this).val();
+            if(0==siteid){
+                $('#school_lists').html('<input type="hidden" name="school_ids" value=0>');
+                return;
+            }
+            $('#siteid').val(siteid);
+            $.getJSON("__APP__?g=Admin&m=Content&a=get_school&siteid="+siteid+"&levelid=3", function(data){
+                var siteStr=''
+                if('ok'==data.data){
+                    $.each(data.info, function(i,item){
+                        siteStr+='<input name="chosen-school_ids" type="checkbox" value="'+item.id+'">'+item.name+'&nbsp;';
+                    });
+                }
+                siteStr+='';
+                $('#school_lists').html(siteStr);
+            });
+        })
+        //选中
+        $('form').on('click','input[name=chosen-school_ids]',function(){
+            var school_ids =[];    
+            $('input[name=chosen-school_ids]:checked').each(function(){    
+                school_ids.push($(this).val());    
+            }); 
+            if(0==school_ids.length){
+                alert('至少选择一个分类');
+                return;
+            }else{
+                $('#schoolids_box').html('<input type="hidden" name="school_ids" value='+school_ids+'>');
+            }              
+        })
+    }
+    //单选
+    function select_school(){
+        //获取第一层
+        $.getJSON("__APP__?g=Admin&m=Content&a=get_site", function(data){
+            var siteStr='<select id="siteid" name="siteid"><option value="0">请选择</option>'
+            $.each(data.info, function(i,item){
+                siteStr+='<option value="'+item.id+'">'+item.name+'</option>';
+            });
+            siteStr+='</select><span id="arealist"></span>';
+            $('#schoolid').replaceWith(siteStr);
+        });
+        //联动
+        $('form').on('change','#siteid',function(){
+            //获取第二层
+            var siteid = $(this).val();
+            $.getJSON("__APP__?g=Admin&m=Content&a=get_site&siteid="+siteid, function(data){
+                var siteStr='<select id="areaid" name="areaid"><option value="0">不限</option>'
+                $.each(data.info, function(i,item){
+                    siteStr+='<option value="'+item.id+'">'+item.name+'</option>';
+                });
+                siteStr+='</select><span id="schoollist"><input type="hidden" name="schoolid" value=0></span>';
+                $('#arealist').html(siteStr);
+            });
+        })  
+        //联动
+        $('form').on('change','#areaid',function(){
+            //获取第三层
+            var areaid = $(this).val();
+            if(0==areaid){
+                $('#schoollist').html('<input type="hidden" name="schoolid" value=0>');
+                return;
+            }
+            $('#areaid').val(areaid);
+            $.getJSON("__APP__?g=Admin&m=Content&a=get_site&areaid="+areaid, function(data){
+                var siteStr='<select id="schoolid" name="schoolid"><option value="0">不限</option>'
+                if('ok'==data.data)
+                    $.each(data.info, function(i,item){
+                        siteStr+='<option value="'+item.id+'">'+item.name+'</option>';
+                    });
+                
+                siteStr+='</select>';
+                $('#schoollist').html(siteStr);
+            });
+        })    
+    }
+    
+    function teacherselect(){ 
+        url = "{:U('Content/teacherselect')}";
+        art.dialog.open(url, {
+            lock: 'true',
+            window: 'top',
+            width: 600,
+            height: 455,
+            ok: function(){
+                var iframeWin = this.iframe.contentWindow;
+                var topWin = art.dialog.top;
+                var tname=iframeWin.$('#myteacherselcectform #teachername').val();
+                $('#teacher_id').val(iframeWin.$('#myteacherselcectform #teacherid').val());
+                $('#teacher_name_select').val(tname);
+            },
+            cancel: true
+        });
+    }
+    $(function(){
+        $('#teacher_id').hide();
+        var tid = $('#teacher_id').val();
+        $('#box_teacher_id').append('<a href="javascript:teacherselect()">选择教师</a>').prepend('<input id="teacher_name_select" type="text" class="input-text valid" value="" readonly>');
+        $.post("{:U('Content/get_teachername')}", { tid: tid }, function(data){
+            $('#teacher_name_select').val(data.info);
+        },'json');
+    }); 
+</script>

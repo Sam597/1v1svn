@@ -1,0 +1,20 @@
+<div style="clear: both;height: 20px;"></div>
+<div class="fot_menu">
+    <YP:list order="listorder desc" where="siteid=$mysiteid"  catid="8" limit="16">
+        {if $key!=0}<span>&nbsp;|&nbsp;</span>{/if}<a href="{$r.url}" <if condition="$r.id eq $id">class="aCur1"</if>  title="{$r.title}">{$r.title|str_cut=###,15}</a>
+    </YP:list>
+</div>
+<div class="footer">
+    <YP:list sql="SELECT foot_html FROM tbl_sitematerial where siteid=$mysiteid limit 1">
+        {$r.foot_html}
+    </YP:list>
+
+</div>
+</div>
+<script>
+    //$('#c{$catid}').find('a').addClass('NaCur');
+    
+</script>
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+<link href="/Yourphp/Tpl/Home/Default/Public/css/content.css" type="text/css" rel="stylesheet" />
+<style>
+    .tit {
+        font-size: 18px;
+        font-family: "微软雅黑";
+        text-align: center;
+        color: #666;
+        line-height: 35px;
+        font-weight: normal;
+        padding: 10px 0
+    }
+    .tit span {
+        font-size: 12px;
+        font-family: "微软雅黑";
+        text-align: center;
+        color: #999;
+    }
+    .content {
+        font-size: 14px;
+        color: #666;
+        line-height: 26px
+    }
+    .relate-news {
+        padding-bottom: 30px;
+        margin-bottom: 30px
+    }
+    .relate-news h2 {
+        font-size: 14px;
+        background: #f3f3f3;
+        line-height: 35px;
+        padding: 0 10px
+    }
+    .relate-news li {
+        width: 340px;
+        padding-right: 10px;
+        float: left;
+        line-height: 35px;
+        color: #666
+    }
+    .relate-news a {
+        color: #666
+    }
+    .signuptable {
+        line-height: 35px;
+        margin-top: 0px;
+        font-size: 14px;
+        line-height: 45px;
+        color: #666
+    }
+    .signuptable a {
+        color: #ff6600
+    }
+    .cinput {
+        border: 1px solid #e2e2e2;
+        line-height: 30px;
+        height: 30px;
+        width: 200px;
+        padding: 0 5px;
+        border-radius: 4px;
+        color: #999;
+    }
+    .ctext {
+        border: 1px solid #e2e2e2;
+        line-height: 25px;
+        height: 75px;
+        width: 300px;
+        padding: 0 5px;
+        border-radius: 4px;
+        color: #999;
+    }
+    .subM {
+        border: 0;
+        height: 40px;
+        width: 80px;
+        text-align: center;
+        background:url(/Yourphp/Tpl/Home/Default/Public/images/baoming.png) 
+    }
+    .reset {
+        border: 0;
+        height: 40px;
+        width: 90px;
+        text-align: center;
+        background:url(/Yourphp/Tpl/Home/Default/Public/images/chongxie.png) 
+    }
+    .enrolltable{font-size: 12px}
+</style>
+<script type="text/javascript" src="/Public/Js/jquery.artDialog.js?skin=default"></script>
+<load href="__PUBLIC__/Js/iframeTools.js"/>
+<load href="__PUBLIC__/Js/swfupload.js"/>
+
+
+
+
+
+
+
+
+
+
+<div class="warp2">
+    <YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=3 and  siteid=$mysiteid  order by listorder desc  limit 1">
+        <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+    </YP:list>
+    <div class="cont02">
+        <div class="cont_left fl" style="padding-top:5px">
+            <!--            <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span></h3>-->
+            <div class="teachercontent">
+                <div class="hide">
+
+                    <div class="signuptable">
+
+                        <form name="myform" id="myform" action="/index.php?g=User&m=Post&a=insert" method="post">
+                            <input type="hidden" id="moduleid" name="moduleid" value="20">
+                            <input type="hidden" id="status" name="status" value="0">
+                            <input type="hidden" id="schoolid" name="schoolid" value="0">
+                            <input type="hidden" id="siteid" name="siteid" value="{$mysiteid}">
+                            <input type="hidden" name="lang" value="1">
+                            <?php $cname=$_GET['coursename'];
+                            if($cname){
+                            echo '<input type="hidden" value="'.$cname.'" name="title" id="title" value="" size="30"  />';
+                            }else{
+                            echo '<input class="cinput" type="hidden" value="" name="title" id="title" value="课程报名" size="30"  />';
+                            }
+                            ?>
+                            <table width="700" border="0" align="center" cellpadding="0" cellspacing="0" class="enrolltable">
+                                <tbody>
+                                    <tr>
+                                        <td height="30" colspan="2"  >             
+                                            <div style="font-size:14px;color: #ff6600;font-weight: bold;border-bottom: 1px solid #e2e2e2">基本信息</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height="10" colspan="2"  ></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="72" height="30" align="right" >联系人：</td>
+                                        <td width="611" height="30">　
+                                            <input class="cinput" name="realname" id="realname" onkeyup="value=value.replace(/[d]/g,'') " size="22" maxlength="50onbeforepaste='clipboardData.setData('text',clipboardData.getData('text').replace(/[d]/g,''))'" id="realname"
+                                                   value="陈先生或者张女士；" onfocus="if (value =='陈先生或者张女士；'){value =''}" onblur="if (value ==''){value='陈先生或者张女士；'}"　/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height="30" align="right"> 联系方式：</td>
+                                        <td height="30">　
+                                            <input  class="cinput" id="telephone" name="telephone" type="text" onkeypress="return event.keyCode>=48&&event.keyCode<=57" onkeyup="if(/(^0+)/.test(value))value=value.replace(/^0*/, '')" size="22" maxlength="50" onpaste="var s=clipboardData.getData('text'); if(!/D/.test(s)) value=s.replace(/^0*/,''); return false;" ondragenter="return false" id="telephone" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="27" align="right">学员姓名：</td>
+                                        <td height="27">　
+                                            <input class="cinput"  name="student_name" onkeyup="value=value.replace(/[d]/g,'') " size="22" maxlength="50onbeforepaste='clipboardData.setData('text',clipboardData.getData('text').replace(/[d]/g,''))'" id="student_name" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="30" align="right">学员性别：</td>
+                                        <td height="30">　
+                                            <input name="sex" type="radio" value="男" checked="checked" />
+                                            男
+                                            <input type="radio" name="sex" value="女" />
+                                            女</td>
+                                    </tr>
+                                    <tr valign="middle">
+                                        <td height="30" align="right"><p> 学员年级：</p></td>
+                                        <td height="30">　
+                                            <select name="grade" id="grade">
+                                                <option value="" selected="selected">请选择学员年级</option>
+                                                <option value="">---高中---</option>
+                                                <option value="高三">高三</option>
+                                                <option value="高二">高二</option>
+                                                <option value="高一">高一</option>
+                                                <option value="">---初中---</option>
+                                                <option value="初三">初三</option>
+                                                <option value="初二">初二</option>
+                                                <option value="初一">初一</option>
+                                                <option value="">---小学---</option>
+                                                <option value="六年级">六年级/预备班</option>
+                                                <option value="五年级">五年级</option>
+                                                <option value="四年级">四年级</option>
+                                                <option value="三年级">三年级</option>
+                                                <option value="二年级">二年级</option>
+                                                <option value="一年级">一年级</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr valign="middle">
+                                        <td height="30" align="right"> 所在学校：</td>
+                                        <td height="30">　
+                                            <input class="cinput"  name="school" onkeyup="value=value.replace(/[d]/g,'') " size="22" maxlength="50onbeforepaste='clipboardData.setData('text',clipboardData.getData('text').replace(/[d]/g,''))'" id="school" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="30" align="right"> 辅导科目：</td>
+                                        <td height="30">　
+                                            <input class="cinput"  name="subject" size="22" maxlength="100" id="subject"      value="多个科目请用顿号隔开；" onfocus="if (value =='多个科目请用顿号隔开；'){value =''}" onblur="if (value ==''){value='多个科目请用顿号隔开；'}"　/>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height="30" align="right"> 辅导方式：</td>
+                                        <td height="30">　
+                                            <input name="class_type" type="checkbox" id="class_type" value="精品小班" checked="checked" />
+                                            精品小班 
+                                            <input name="class_type" type="checkbox" id="class_type" value="一对一辅导" />
+                                            一对一辅导</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="30" align="right">联系地址：</td>
+                                        <td height="30">　
+                                            <input class="cinput"  name="address" value="" size="50" maxlength="200" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="10" colspan="2"  ></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="30" colspan="2" >
+
+                                            <div style="font-size:14px;color: #ff6600;font-weight: bold;border-bottom: 1px solid #e2e2e2">其他信息</div>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height="10" colspan="2"  ></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td height="80" align="right" valign="middle"><p>学员情况： <br />
+                                            </p></td>
+                                        <td height="80" valign="middle">　
+                                            <textarea class="ctext"  id="textarea" name="baseinfo" rows="5" cols="48"   onfocus="if (value =='学员年级或班级排名等；'){value =''}" onblur="if (value ==''){value='学员年级或班级排名等；'}"　>
+
+                                            </textarea>
+                                            <script>
+                                                $('#textarea').val('学员年级或班级排名等；')
+                                            </script>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height="100" align="right"> 其他说明：</td>
+                                        <td height="100" valign="middle">　
+                                            <textarea class="ctext"  id="textarea2" name="addition" rows="5" cols="48"    onfocus="if (value =='备注或报读校区等；'){value =''}" onblur="if (value ==''){value='备注或报读校区等；'}"　>
+
+                                            </textarea>
+
+                                            <script>
+                                                $('#textarea2').val('备注或报读校区等；')
+                                            </script></td>
+                                    </tr>
+                                    
+                                     <tr>
+                                        <td height="30" align="right"> 验证码：</td>
+                                        <td height="30" valign="middle">　
+                                            <input name="verifyCode" class="cinput" style="width:100px;margin-right: 5px"   id="verifyCode"  size="6" value="" maxlength="4" /><img src="{:U('Home/Index/verify')}" onclick="javascript:resetVerifyCode();" class="checkcode" align="absmiddle"  title="{:L('resetVerifyCode')}" id="verifyImage"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td style="padding-left:10px">
+                                            <input class="subM" id="btnGoExam" value="" type="submit"/>
+                                            <input class="reset" id="reset" value="" type="reset"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!--                    <table cellpadding="0" cellspacing="0" width="100%" >
+                                              <tbody>
+                                                  <tr>
+                                                      <td width="50">课程：</td>
+                                                      <td  id="box_realname">
+                                                          <?php $cname=$_GET['coursename'];
+                                                          if($cname){
+                                                          echo $cname.'<input type="hidden" value="'.$cname.'" name="title" id="title" value="" size="30"  />';
+                                                          }else{
+                                                          echo '<input class="cinput" type="text" value="" name="title" id="title" value="" size="30"  />';
+                                                          }
+                                                          ?>
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td >姓名：</td>
+                                                      <td  id="box_realname"><input class="cinput" type="text" name="realname" id="realname" value="" size="30" validate=" minlength:1, maxlength:30, required:true, chinese:true" /></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td >邮箱：</td>
+                                                      <td  id="box_email"><input class="cinput"  type="text" name="email" id="email" value="" size="" validate=" required:true, email:true" /></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td >手机：</td>
+                                                      <td id="box_telephone"><input class="cinput"  type="text" name="telephone" id="telephone" value="" size="" validate=" required:true, mobile:true" /></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td ></td>
+                                                      <td><input class="subM" value="提交" type="submit"/></td>
+                                                  </tr>
+                                              </tbody>
+                                          </table>-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="newcont_right fr">
+            <div class="right-picloop" style="height:818px">
+                <h3 style="margin:0px 10px;padding: 17px 0;border-bottom:1px solid #e2e2e2;">品牌介绍</h3>
+                <YP:block pos="signup_right" />
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<script>     
+
+    $('#btnGoExam').click(function(e){
+        if(!$('#realname').val())
+        {
+            alert('请填写家长姓名');
+            e.preventDefault();
+            $('#realname').focus();
+            return;
+        }
+        if(!$('#telephone').val())
+        {
+            alert('请填写家长电话');
+            e.preventDefault();
+            $('#telephone').focus();
+            return;
+        }                                             
+        $('#loginForm').submit();
+    })
+    function resetVerifyCode(){
+        var timenow = new Date().getTime();
+        document.getElementById('verifyImage').src='__APP__?g=Home&m=Index&a=verify#'+timenow;}
+</script>  

@@ -1,0 +1,143 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=8 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <div class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></div>
+</YP:list>
+<div class="weizhi">
+    <span class="fl"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span></span>
+    <span class="fr" >
+        <form method="get" action="/Search/index">
+            <input type="text" name="search" class="search" placeholder="请输入搜索信息" value="" />
+            <input type="submit" class="search_btn" value="" />
+        </form>
+    </span>
+</div>
+<div class="anlibox">
+    <div class="anli_left3">
+        <p class="p20"><img src="/Yourphp/Tpl/Home/Default/Public/images/icon20.jpg" /></p>
+        <ul class="ul09">
+            <YP:list order="listorder desc" where="siteid=$mysiteid" catid="34" limit="1">
+                <li class="liCur24">
+                    <a class="zl" href="{$r.url}" title="{$r.title}">{$r.title|str_cut=###,15}</a>
+                </li>
+            </YP:list>
+
+            <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where siteid=$mysiteid and level=2 order by listorder desc">
+                <li class="li42">
+                    <a data-areaid="{$r.id}" href="javascript:void(0)" title="{$r.name}">{$r.name}</a><span></span>
+                </li>
+            </YP:list>
+
+        </ul>
+    </div>
+    <div class="anli_right">
+        <h3 class="ditie20">{$title}</h3>
+        <div id="allmap" style="width:670px;height:500px;overflow:hidden;margin:0;"></div>
+        <div class="">
+            <volist name="list_xq_info" id="vo">
+                <h3 class="title22box">{$vo.area}</h3>
+                <table cellpadding="0" cellspacing="0" class="tab20">
+                    <volist name="vo.schoollist" id="vos">
+                        <tr>
+                            <td class="td21">{$vos.title}</td>
+                            <td class="td22">{$vos.address}</td>
+                            <td>{$vos.phone}</td>
+                        </tr>
+                    </volist>
+                </table>
+            </volist>
+        </div>
+    </div>
+</div>
+<script>
+//    $('.li42 a').click(function(){
+//        var $this=$(this)
+//        var areaid=$this.data('areaid');
+//        $.getJSON("__APP__?g=Home&m=index&a=get_site&areaid="+areaid, function(data){
+//            var siteStr=''
+//            if('ok'==data.data)
+//                $.each(data.info, function(i,item){
+//                    siteStr+='<em class="li02" style="display:block"><a href="/xiaoqu/show/'+item.id+'.html">'+item.name+'</a></em>';
+//                });
+//            $this.next().html(siteStr);
+//        });
+//    })
+    var licur = '{$areaid}';
+    $.getJSON("__APP__?g=Home&m=index&a=get_schoolinfo&areaid="+licur, function(data){
+        var siteStr=''
+        if('ok'==data.data)
+            $.each(data.info, function(i,item){
+                siteStr+='<em class="li02" style="display:block"><a href="/xiaoqu/show/'+item.schoolinfo_id+'.html">'+item.name+'</a></em>';
+            });
+        $('.li42 a[data-areaid='+licur+']').next().html(siteStr);
+        $('.li42 a[href="/xiaoqu/show/{$id}.html"]').addClass('li42a').parent().addClass('liCur24');
+        
+    });
+    $('.li42 a').click(function(){
+        var licur = '{$id}';
+        var $this=$(this);
+        var areaid=$this.data('areaid');
+        $.getJSON("__APP__?g=Home&m=index&a=get_schoolinfo&areaid="+areaid, function(data){
+            var siteStr=''
+            if('ok'==data.data)
+                $.each(data.info, function(i,item){
+                    siteStr+='<em class="li02" style="display:block"><a href="/xiaoqu/show/'+item.schoolinfo_id+'.html">'+item.name+'</a></em>';
+                    if(licur == item.schoolinfo_id)
+                        $this.parent().removeClass('Liout').addClass('liCur24');
+                });
+            $this.next().html(siteStr);
+        });
+    })
+</script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=FB4ac1bff44d8efd720beb51ac06546b"></script><script type="text/javascript">
+    var map = new BMap.Map("allmap");
+    // 编写自定义函数,创建标注
+    function addMarker(point){
+        var marker = new BMap.Marker(point);
+        map.addOverlay(marker);
+    }
+    map.enableScrollWheelZoom(true);
+        <YP:list sql="SELECT point,title,phone,address,areaid FROM tbl_schoolinfo where siteid=$mysiteid and catid=34 order by listorder desc">
+        <?php $a=$r['point'];?>
+        {if $a}
+    fuckjun({$r.point},'{$r.title}','{$r.address}','{$r.phone}')
+    {/if}
+        </YP:list>
+        map.centerAndZoom(new BMap.Point({$map_center}),12);
+
+    // 向地图添加标注
+    //var point1 = new BMap.Point(121.417236,31.235512); // 普陀华师大
+    //var point2 = new BMap.Point(121.467528,31.268028); // 闸北共和新路
+    //var point3 = new BMap.Point(121.595042,31.259076); // 浦东金桥
+    //var point4 = new BMap.Point(121.525989,31.234432); // 浦东八佰伴
+    //var point5 = new BMap.Point(121.440475,31.187425); // 徐汇上体馆
+    //var point6 = new BMap.Point(121.408235,31.139321); // 闵行南方商城
+    //var point7 = new BMap.Point(121.491691,31.221748); // 黄浦老西门
+    //var point8 = new BMap.Point(121.510439,31.279069); // 杨浦四平路
+    //fuckjun(point1,'普陀华师大','中山北路3620银城大厦20楼；','精品小班:62220822、62220833；');
+    //fuckjun(point2,'闸北共和新路','共和新路1207号4A栋3楼；','精品小班:63888880、63888885；');
+    //fuckjun(point3,'浦东金桥','金桥路1399号福建天安大厦5楼；','精品小班:65656570、65656571；');
+    //fuckjun(point4,'浦东八佰伴','张杨路628弄东明广场1号楼23楼A座；','精品小班:58582333、58587222；');
+    //fuckjun(point5,'徐汇上体馆','凯旋路3500号华苑大厦1号楼15楼E座；','精品小班:63338880、63338882；');
+    //fuckjun(point6,'闵行南方商城','古方路76号南方休闲广场5楼；','精品小班:63337770、63337772；');
+    //fuckjun(point7,'黄浦老西门','西藏南路765号永惠大厦9楼，近方斜路；','精品小班:63335550、63335551；');
+    //fuckjun(point8,'杨浦四平路','大连路1548号莱克大厦2楼，四平路口；','精品小班:65552220、65551110；');
+    function fuckjun(pointx,pointy,title,content,tel){
+        var point = new BMap.Point(pointx,pointy);
+        addMarker(point);
+        var sContent =
+            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>"+title+"</h4>" + 
+            "<p style='margin:0;line-height:1.5;font-size:13px;'>"+content+"</p>" + 
+            "<p style='margin:0;line-height:1.5;font-size:13px'>"+tel+"</p>" + 
+            "</div>";
+        var marker = new BMap.Marker(point);
+        var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+        map.centerAndZoom(point, 12);
+        map.addOverlay(marker);
+        marker.addEventListener("click", function(){          
+            this.openInfoWindow(infoWindow);
+            //图片加载完毕重绘infowindow
+            document.getElementById('imgDemo').onload = function (){
+                infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+            }
+        });
+    }
+</script>

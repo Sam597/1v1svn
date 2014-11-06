@@ -1,0 +1,288 @@
+<link href="/Yourphp/Tpl/Home/Default/Public/css/content.css" type="text/css" rel="stylesheet" />
+<style>
+    .tit {
+        font-size: 18px;
+        font-family: "微软雅黑";
+        text-align: center;
+        color: #666;
+        line-height: 35px;
+        font-weight: normal;
+        padding: 10px 0
+    }
+    .tit span {
+        font-size: 12px;
+        font-family: "微软雅黑";
+        text-align: center;
+        color: #999;
+    }
+    .content {
+        font-size: 14px;
+        color: #666;
+        line-height: 26px
+    }
+    .relate-news {
+        padding-bottom: 30px;
+        margin-bottom: 30px
+    }
+    .relate-news h2 {
+        font-size: 14px;
+        background: #f3f3f3;
+        line-height: 35px;
+        padding: 0 10px
+    }
+    .relate-news li {
+        width: 340px;
+        padding-right: 10px;
+        float: left;
+        line-height: 35px;
+        color: #666
+    }
+    .relate-news a {
+        color: #666
+    }
+    .signuptable {
+        line-height: 35px;
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 45px;
+        color: #666
+    }
+    .signuptable a {
+        color: #ff6600
+    }
+    .input-text{
+        border: 1px solid #e2e2e2;
+        line-height: 25px;
+        height: 25px;
+        width: 600px;
+        padding: 5px;
+        color: #999;
+        border-radius: 3px; 
+    }
+    .input-shorttext{
+        border: 1px solid #e2e2e2;
+        line-height: 25px;
+        height: 25px;
+        width: 280px;
+        padding: 5px;
+        color: #999;
+        margin-right: 28px;
+        border-radius: 3px; 
+    }
+    #content {
+        border: 1px solid #e2e2e2;
+        line-height: 25px;
+        height: 125px;
+        width: 600px;
+        padding:5px;
+        color: #999;
+        border-radius: 3px; 
+    }
+    .subM {
+        border: 0px solid #e2e2e2;
+        height: 34px;
+        width: 76px;
+        text-align: center;
+        background:url(/Yourphp/Tpl/Home/Default/Public/images/tijiao.jpg) 
+    }
+    .enrolltable{font-size: 12px}
+</style>
+<script type="text/javascript" src="/Public/Js/jquery.artDialog.js?skin=default"></script>
+<load href="__PUBLIC__/Js/iframeTools.js"/>
+<load href="__PUBLIC__/Js/swfupload.js"/>
+
+
+
+
+
+
+
+
+
+
+<div class="warp2">
+    <YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=3 and  siteid=$mysiteid  order by listorder desc  limit 1">
+        <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+    </YP:list>
+    <div class="cont02">
+        <div class="cont_left fl">
+            <!--            <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span></h3>-->
+            <div class="teachercontent">
+                <h3 style="text-align:left;color: #ff6600;border-bottom: 1px solid #e2e2e2;padding-bottom: 10px">欢迎你的意见和建议</h3>
+                <div class="hide">
+
+<div class="post_box" style="padding:30px 0">
+            <form name="myform" id="myform" action="{:URL('User-Post/insert')}" method="post" enctype="multipart/form-data" 
+                  <input type="hidden" id="catid" name="catid" value="{$catid}" />
+                <input type="hidden" id="siteid" name="siteid" value="{$mysiteid}" />
+                <input type="hidden" id="schoolid" name="schoolid" value="0" />
+                <input type="hidden" id="catid" name="moduleid" value="6" />
+                <input type="hidden"  name="lang" value="{$langid}" />
+                <table cellpadding=0 cellspacing=0 class="table_form"  >
+                    <tr>
+                        <td width="30"><font color="red" style="float: right; margin-right: 5px;">*</font></td>
+                        <td>
+                            <select name="type" id="type" style="color：#999;line-height: 35px;height:35px;border: 1px solid #ccc">
+                                <option value="" selected="selected">请选择问题分类</option>
+                                <option value="教学质量">教学质量</option>
+                                <option value="服务质量" >服务质量</option>
+                                <option value="课堂氛围" >课堂氛围</option>
+                                <option value="校园环境" >校园环境</option>
+                                <option value="网站错误" >网站错误</option>
+                                <option value="其他" >其他</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="30" height="20"></td>
+                        <td>
+
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td width="30"><font color="red" style="float: right; margin-right: 5px;">*</font></td>
+                        <td>
+                            <input type="text" class="input-text" name="title" id="title" size="40"  
+                                   value="建议标题" onfocus="if (value =='建议标题'){value =''}" onblur="if (value ==''){value='建议标题'}"　/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="30" height="20"></td>
+                        <td>
+
+                        </td>
+                    </tr> 
+
+                     
+  
+                    <tr>
+                        <td width="30"><font color="red" style="float: right; margin-right: 5px;">*</font></td>
+                        <td>
+                            <textarea class="" name="content" rows="5" cols="60" id="content"  
+                                      onfocus="if (value =='建议内容'){value =''}" onblur="if (value ==''){value='建议内容'}"　>
+
+
+                            </textarea>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td width="30" height="20"></td>
+                        <td>
+                            <div style="padding-top:15px">
+                                <input type="file" class="input-text" name="feedbackpic" id="feedbackpic" size="40"  
+                                       value="" 　/>
+
+                            </div>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td width="30" height="20"></td>
+                        <td>
+
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td width="30"></td>
+                        <td>
+                            联系方式（选填）：</a>
+                        </td>
+                    </tr> 
+
+                    <tr id="contactinfo">
+                        <td width="30" height="20"></td>
+                        <td>
+                            <div style="padding-top:15px">
+                                <input type="text" class="input-shorttext" name="username" id="username" size="40"  
+                                       value="姓名" onfocus="if (value =='姓名'){value =''}" onblur="if (value ==''){value='姓名'}"　/>
+                                <input type="text" class="input-shorttext" name="telephone" id="telephone" size="40"  
+                                       value="联系电话" onfocus="if (value =='联系电话'){value =''}" onblur="if (value ==''){value='联系电话'}"　/>
+                            </div>
+
+                        </td>
+                    </tr>  
+
+                    <tr>
+                        <td width="30" height="20"></td>
+                        <td>
+
+                        </td>
+                    </tr> 
+
+                   <tr>
+                                    <td width="30"><font color="red" style="float: right; margin-right: 5px;">*</font></td>
+                                    <td align="left">
+                                        验证码:<input name="verifyCode"  style="width:100px;margin-right: 5px"   id="verifyCode"  size="6" value="" maxlength="4"  class="input-text"/><img src="{:U('Home/Index/verify')}" onclick="javascript:resetVerifyCode();" class="checkcode" align="absmiddle"  title="{:L('resetVerifyCode')}" id="verifyImage"/>
+
+                                    </td>
+                                </tr> 
+
+                    <tr>
+                                    <td width="30" height="10"></td>
+                                    <td>
+
+                                    </td>
+                                </tr> 
+
+                    <tr>
+                        <td width="30"></td>
+                        <td style="text-align:left">
+                            <input class="subM" id="btnGoExam" value="" type="submit"/>
+                        </td>
+
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="newcont_right fr">
+            <div class="right-picloop" style="height: 595px;">
+                <h3>您的信息是安全的</h3>
+                <p style="color:#999;line-height: 25px;margin:15px 15px 0 15px;text-align: left;border-top:1px solid #e2e2e2; padding-top:15px; font-size:14px;">
+                    感谢您对新王牌的支持，请告诉我们您对新王牌的意见和建议。 
+                </p>
+                <p style="color:#999;line-height: 25px;margin:10px 15px 0 15px;text-align: left; font-size:14px;">更多想法可以与校长办公室联系，校长信箱为&nbsp;&nbsp;a@xwp.cn。</p>
+                <p style="color:#999;line-height: 25px;margin:10px 15px 0 15px;text-align: left; font-size:14px;">由于您将敏感的个人信息委托给我们，我们已经采取措施，以确保其安全性。</p>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <script>
+        $('#content').val('建议内容');
+        $('#allinfo').click(function(){
+            var ishidden= $('#contactinfo:hidden');
+            (ishidden.length==0)?$('#contactinfo').hide():$('#contactinfo').show();
+        })
+ function resetVerifyCode(){
+        var timenow = new Date().getTime();
+        document.getElementById('verifyImage').src='__APP__?g=Home&m=Index&a=verify#'+timenow;
+    }
+    </script>
+
+
+
+
+<div class="cont02">
+
+    <div class="left">
+
+        <style>
+            #content {margin:0;line-height:22px;}
+        </style>
+        
+
+    </div>
+
+
+
+</div>

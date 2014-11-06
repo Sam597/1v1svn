@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+/*index end*/
+.cont02{ width:980px; border:0;margin:15px auto 0 auto; overflow:hidden;zoom:1;  background:none;}/*css3*/
+.cont_left{border-radius:4px;margin:0; border:1px solid #E2E2E2;  width:700px; padding:15px;background:url(../images/all_boxbg.jpg) repeat-x;}
+.newcont_right{width:235px;  overflow:hidden;zoom:1;}
+.right-picloop{ width:233px; padding-bottom: 10px;border-radius:4px;border:1px solid #E2E2E2;background:url(../images/all_boxbg.jpg) repeat-x;  overflow: hidden}
+.right-picloop h3{font-size:14px;font-weight: bold;padding: 11px 0 0 11px;color: #ff6600}
+.right-picloop ul{margin-right: -10px}
+.right-picloop li{padding: 15px 0 0 11px;width:100px;float: left}
+.right-picloop p{text-align: center;line-height: 18px;padding-top: 5px;display: block}
+.right-textloop{width:233px; border-radius:4px;padding-bottom: 10px;border:1px solid #E2E2E2;background:url(../images/all_boxbg.jpg) repeat-x;  overflow: hidden;margin-top: 15px;float: left}
+.right-textloop h3{font-size:14px;font-weight: bold;padding: 11px 0 0 11px;float: left;display: block;height: 25px;color: #ff6600}
+.right-textloop li{width:200px;float: left;line-height: 25px;padding-left: 11px;height: 25px;overflow: hidden}
+.right-diy{ width:233px; padding-bottom: 10px;border-radius:4px;border:1px solid #E2E2E2;background:url(../images/all_boxbg.jpg) repeat-x;  overflow: hidden}
+.right-studentloop{width:233px; border-radius:4px;padding-bottom: 10px;border:1px solid #E2E2E2;background:url(../images/all_boxbg.jpg) repeat-x;  overflow: hidden;margin-top: 15px;float: left}
+.right-studentloop h3{font-size:14px;font-weight: bold;padding: 11px 0 0 11px;float: left;display: block;height: 25px;color: #ff6600}
+.right-studentloop li{width:200px;float: left;line-height: 25px;padding-left: 11px;height: 75px;overflow: hidden;padding: 5px 0;margin-left: 10px}
+.right-studentloop li img{ float: left;display: inline-block}
+.right-studentloop li div{ float: left;width: 90px;padding-left: 8px}

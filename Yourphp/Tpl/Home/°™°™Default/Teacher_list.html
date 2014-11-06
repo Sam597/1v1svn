@@ -1,0 +1,209 @@
+<link href="/Yourphp/Tpl/Home/Default/Public/css/content.css" type="text/css" rel="stylesheet" />
+
+<div class="warp">
+    <YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=4 and  siteid=$mysiteid  order by listorder desc  limit 1">
+        <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+    </YP:list>
+    <div class="cont02">
+        <div class="cont_left fl">
+<!--            <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></h3>-->
+            <div class="xkcont">
+<!--                <h3 class="mainTitle" style="margin:5px 0 10px 0">名师之队</h3>-->
+
+                <div class="kmchange" id="filter">
+
+                    <dl>
+                        <dt>年级：</dt>
+                        <dd>
+                            <a  id="g0"  data-id="0" data-parma="grade"   href="#" >不限</a>
+                            <a id="g3" href="#" data-id="3" data-parma="grade" >高中</a>
+                            <a id="g2" href="#" data-id="2" data-parma="grade" >初中</a>
+                            <a id="g1" href="#" data-id="1" data-parma="grade" >小学</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>科目：</dt>
+                        <dd>
+                            <a  id="c0"  data-id="0" data-parma="course"   href="#" >不限</a>
+                            <a id="c1" href="#" data-id="1"  data-parma="course" >数学</a>
+                            <a id="c2" href="#" data-id="2"  data-parma="course" >语文</a>
+                            <a id="c3" href="#" data-id="3"  data-parma="course" >英语</a>
+                            <?php if(1!=$_GET['grade']){
+                            ?>
+                            <a id="c4" href="#" data-id="4"  data-parma="course" >物理</a>
+                            <a id="c5" href="#" data-id="5"  data-parma="course" >化学</a>
+                            <?php if(2!=$_GET['grade']){
+                            ?>
+                            <a id="c6" href="#" data-id="6"  data-parma="course" >生物</a>
+                            <a id="c7" href="#" data-id="7"  data-parma="course" >政治</a>
+                            <a id="c8" href="#" data-id="8"  data-parma="course" >地理</a>
+                            <a id="c9" href="#" data-id="9"  data-parma="course" >历史</a>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            }
+                            ?>
+
+                        </dd>
+                    </dl>
+                    <!--                    <dl>
+                                            <dt>区域：</dt>
+                                            <dd>
+                                                <a  id="a0"  data-id="0" data-parma="area"   href="#" >不限</a>
+                                            <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where siteid=$mysiteid and level=2">
+                                                <a id="a{$r.id}" href="#" data-id="{$r.id}" data-parma="area" >{$r.name}</a>
+                                            </YP:list>
+                                            </dd>
+                                        </dl>-->
+<!--                    <dl>
+                        <dt>校区：</dt>
+                        <dd>
+                            <a  id="s0"  data-id="0" data-parma="school"   href="#" >不限</a>
+                        <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where siteid=$mysiteid and level=3 order by listorder desc">
+                            <a id="s{$r.id}" href="#" data-id="{$r.id}" data-parma="school" >{$r.name}</a>
+                        </YP:list>
+                        </dd>
+                    </dl>-->
+                    <!--                    <dl>
+                                            <dt>层次：</dt>
+                                            <dd>
+                                                <a  id="l0"  data-id="0" data-parma="level"   href="#" >不限</a>
+                                            <YP:list order="listorder desc" sql="SELECT * FROM tbl_level">
+                                                <a id="l{$r.id}" href="#" data-id="{$r.id}" data-parma="level" >{$r.name}</a>
+                                            </YP:list>
+                                            </dd>
+                                        </dl>-->
+                </div>
+                <h3 class="title05 mt15 clear"><span>名师一览</span></h3>
+
+                <volist name="list" id="r">
+                    <dl class="dl04">
+                        <dt class="teacher_minipic"><a target="_blank"  href="{$r.url}"><img src="{$r.thumb}" height="147" width="200" /></a></dt>
+                        <dd class="dd3"><strong><a target="_blank"  href="{$r.url}" style="color:#ff6600">{$r.title} {$r.grade} {$r.course}</a></strong></dd> 
+                        <dd class="dd5"><a target="_blank"  href="{$r.url}">{$r.desc}</a></dd>
+                        <dd class="dd09"><a target="_blank"  href="{$r.url}" style="float: right">查看详情</a></dd>
+                    </dl>
+
+                </volist>
+
+
+                <div class="page">
+                    <!-- <a href="#">&lt;</a><a href="#">1</a><a href="#">2</a><a href="#">&gt;</a> -->
+                    <div id="pages" class="page">{$pages}</div>
+                </div>
+            </div>
+        </div>
+        <div class="newcont_right fr">
+            <div class="right-picloop">
+                <h3>名师推荐</h3>
+                <ul>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_teacher where siteid=$mysiteid and posid=3 limit 10">
+                        <li>
+                            <a href="{$r.url}" title="{$r.title}" target="_blank">
+                                <img src="{$r.thumb}" width="100" height="75"/>
+                                <p>{$r.title}
+                                    <!--                                </br><font color="#999">学科:物理</font>-->
+                                </p>
+                            </a>
+                        </li>
+                    </YP:list>
+                </ul>
+            </div>
+            <div class="right-textloop">
+                <h3>教学故事</h3>
+                <ul>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_article where siteid=$mysiteid and teacher_id!=0 limit 8">
+                        <li>
+                            <a href="{$r.url}" title="{$r.title}" target="_blank">
+                                ·{$r.title}
+                            </a>
+                        </li>
+                    </YP:list>
+                    <div class="clear"></div>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $('#g'+{$grade}).addClass('kmac');
+    $('#a'+{$area}).addClass('kmac');
+    $('#s'+{$school}).addClass('kmac');
+    $('#l'+{$level}).addClass('kmac');
+    $('#c'+{$course}).addClass('kmac');
+    //    //科目多选
+    //    var arrC='{$course}'.split(',');
+    //    for(var k in arrC){
+    //        $('#c'+arrC[k]).addClass('kmac');
+    //    }
+    $('#filter a').click(function(){
+        var urlStr='',curl=getRequest(),
+        id=$(this).data('id').toString(),
+        parma=$(this).data('parma');
+        //        //处理课程多选
+        //        if(parma=='course'){
+        //            if(curl['course']){
+        //                if(0==id){
+        //                    curl['course']=0;
+        //                }else{ 
+        //                    if(0==curl['course']){
+        //                        curl['course']=id;
+        //                    }else{
+        //                        arrCourse=curl['course'].split(',');
+        //                        if('-1'==jQuery.inArray(id, arrCourse)){
+        //                            curl['course']=curl['course']+','+id;
+        //                        }else{
+        //                            arrCourse[jQuery.inArray(id, arrCourse)]=undefined;
+        //                            var courseStr='';
+        //                            for(var k in arrCourse){
+        //                                if(undefined!=arrCourse[k]){
+        //                                    courseStr+=arrCourse[k]+',';
+        //                                } 
+        //                            }
+        //                            curl['course']=courseStr.slice(0,-1);
+        //                        }       
+        //                    }
+        //                }
+        //            }else{
+        //                curl[parma]=id;
+        //            }
+        //        }else{
+        curl[parma]=id;//赋值或修改参数
+        //        }
+        //选择年纪清空科目
+        if('grade'==parma){
+            curl['course']=0;
+        }
+        //选择区域清空校区
+        if('area'==parma){
+            curl['school']=0;
+        }
+        //组合url
+        for(var key in curl){
+            urlStr+=key+'='+curl[key]+'&'; 
+        }
+
+        window.location.href='/jiaoshi/?'+urlStr.slice(0,-1);
+    })
+    
+    //获取当前参数并转化数组
+    function getRequest()  
+    {  
+        var url = location.search; //获取url中"?"符后的字串  
+        var theRequest = new Array();  
+        if(url.indexOf("?") != -1)  
+        {  
+            var str = url.substr(1);  
+            strs = str.split("&");  
+            for(var i = 0; i < strs.length; i ++)  
+            {  
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+            }  
+        }  
+        return theRequest;  
+    }  
+</script>
+

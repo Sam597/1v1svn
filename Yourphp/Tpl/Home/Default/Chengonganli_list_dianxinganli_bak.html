@@ -1,0 +1,99 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=5 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <div class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></div>
+</YP:list>
+<div class="weizhi">
+    <span class="fl"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></span>
+    <span class="fr" >
+        <form method="get" action="/Search/index">
+            <input type="text" name="search" class="search" placeholder="请输入搜索信息" value="" />
+            <input type="submit" class="search_btn" value="" />
+        </form>
+    </span>
+</div>
+<div class="anlibox">
+    <div class="anli_left">
+        <p class="p20"><img src="/Yourphp/Tpl/Home/Default/Public/images/icon20.jpg" /></p>
+        <ul class="ul10">
+            <YP:subcat catid="24" id="cid" key="ii">
+                <li id="c{$cid['id']}" <if condition="$cid['id'] eq $catid">class="liCur20"</if>   ><a href="{$cid['url']}" >{$cid['catname']}</a></li>
+            </YP:subcat>
+        </ul>
+    </div>
+    <div class="anli_right"> 
+        <h3 class="subnav title20">
+            <span>心理辅导</span>
+            <span>方法点拨</span>
+            <span>基础巩固</span>
+            <span>培优拔尖</span>
+        </h3>
+        <div class="submenu01">
+            <a id="s1" href="/{$catdir}/?studenttype=1">成长苦恼型</a> | 
+            <a id="s2"  href="/{$catdir}/?studenttype=2">紧张焦虑型</a> | 
+            <a id="s3"  href="/{$catdir}/?studenttype=3">目标缺失型</a> | 
+            <a id="s4"  href="/{$catdir}/?studenttype=4">情绪波动型</a> | 
+        </div>
+        <div class="submenu01">
+            <a id="s5"  href="/{$catdir}/?studenttype=5">一做就错型</a> | 
+            <a id="s6"  href="/{$catdir}/?studenttype=6">裹足不前型</a> | 
+            <a id="s7"  href="/{$catdir}/?studenttype=7">苦学无效型</a> | 
+            <a id="s8"  href="/{$catdir}/?studenttype=8">缺少思路型</a> | 
+        </div>
+        <div class="submenu01">
+            <a id="s9"  href="/{$catdir}/?studenttype=9">成长苦恼型</a> | 
+            <a id="s10"  href="/{$catdir}/?studenttype=10">基础不牢型</a> | 
+            <a id="s11"  href="/{$catdir}/?studenttype=11">眼高手低型</a> | 
+            <a id="s12"  href="/{$catdir}/?studenttype=12">知识漏缺型</a> | 
+        </div>
+        <div class="submenu01">
+            <a id="s13"  href="/{$catdir}/?studenttype=13">名校点睛型</a> | 
+            <a id="s14"  href="/{$catdir}/?studenttype=14">思维训练型</a> | 
+            <a id="s15"  href="/{$catdir}/?studenttype=15">竞赛辅导型</a> | 
+            <a id="s16"  href="/{$catdir}/?studenttype=16">考前冲刺型</a> | 
+        </div>
+
+        <script>
+            //处理TAB切换
+            var cur_tid='<?php echo $_GET['studenttype'] ?>'?'<?php echo $_GET['studenttype'] ?>':0;
+            if(cur_tid <5){
+                tid=0
+            }
+            if(cur_tid>4 &&  cur_tid <9){
+                tid=1
+            }
+            if(cur_tid>8 && cur_tid <13){
+                tid=2
+            }
+            if(cur_tid>12 && cur_tid <17){
+                tid=3
+            }
+            $(".submenu01:eq("+tid+")").show();
+            $('.subnav span:eq('+tid+')').addClass('spanH');
+            $('.subnav span').mouseover(function(){
+                $('.submenu01').hide();$('.spanH').removeClass();
+                var curr_index=$('.subnav span').index(this);
+                $('.submenu01').eq(curr_index).show();
+                $(this).addClass('spanH');
+            })
+            //处理选中状态
+            
+            $('#s'+cur_tid).addClass('aH02');
+        </script>
+        <div class="anlicont">
+            <volist name="list" id="r">
+
+                <dl class=" dl06">
+                    <dt><a target="_blank"  href="{$r.url}"><img src="{$r.thumb}" height="130" width="174" /></a></dt>
+                    <dd class="dd03"><a target="_blank"  href="{$r.url}">{$r.title}</a></dd>
+                    <dd>来自学校：{$r.school}</dd>
+                    <dd>感言：{$r.likereason|str_cut=###,36}<a href="#" style=" color:#15BBF9; ">[详情]</a></dd> 
+                </dl>
+            </volist>
+
+            <div id="pages" class="page" style="padding-top: 20px">{$pages}</div>
+
+
+        </div>
+        <!--renwu xinxi-->
+
+    </div>
+</div>

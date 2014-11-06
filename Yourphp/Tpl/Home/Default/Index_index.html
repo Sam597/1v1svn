@@ -1,0 +1,525 @@
+<!--nav end-->
+<div class="banner"><YP:flash flashid="mysiteid" /></div>
+<div class="fudao">{$site_info.index_fudao_html}</div>
+<div class="cont01">
+    <h3>
+        <img src="/Yourphp/Tpl/Home/Default/Public/images/title01.jpg" /> 
+    </h3>
+    {$site_info.index_special_html}
+    <div class="ct02">
+        <img src="/Yourphp/Tpl/Home/Default/Public/images/ys_bottom.jpg" /> 
+    </div>
+    <div class="top50">
+        <div class="titlebox wangpaibox">
+            <span class="sp02">王牌Top30</span>
+            <a href="javascript:;" class="acur32">2014年</a>
+            <a href="javascript:;">2013年</a>
+            <a href="javascript:;">2012年</a>
+<!--            <a href="javascript:;">2009年</a>-->
+        </div> 
+        <div class="top50box">
+            <div class="top1">
+                <div class="top50a">
+                    <p class="p02">高<br />考</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2014 and subcatid=3 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2014" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="top50a">
+                    <p class="p02">中<br />考</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2014 and subcatid=2 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2014" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="top50a">
+                    <p class="p02" style="font-size:14px; line-height:14px; padding-left:2px; top:-42px;">小<br />升<br />初</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2014 and subcatid=1 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2014" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+            </div> 
+            <!--change01 end-->
+            <div class="top1">
+                <div class="top50a">
+                    <p class="p02">高<br />考</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2013 and subcatid=3 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2013" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="top50a">
+                    <p class="p02">中<br />考</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2013 and subcatid=2 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2013" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="top50a">
+                    <p class="p02" style="font-size:14px; line-height:14px; padding-left:2px; top:-42px;">小<br />升<br />初</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2013 and subcatid=1 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2013" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+            </div> 
+            <!--change01 end-->
+            <div class="top1">
+                <div class="top50a">
+                    <p class="p02">高<br />考</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2012 and subcatid=3 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2012" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="top50a">
+                    <p class="p02">中<br />考</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2012 and subcatid=2 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2012" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="top50a">
+                    <p class="p02" style="font-size:14px; line-height:14px; padding-left:2px; top:-42px;">小<br />升<br />初</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2012 and subcatid=1 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2012" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+            </div> 
+            <!--change01 end-->
+            <div class="top1">
+                <div class="top50a">
+                    <p class="p02">高<br />考</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2009 and subcatid=3 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2009" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="top50a">
+                    <p class="p02">中<br />考</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2009 and subcatid=2 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2009" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+                <div class="top50a">
+                    <p class="p02" style="font-size:14px; line-height:14px; padding-left:2px; top:-42px;">小<br />升<br />初</p>
+                    <table cellpadding="0" cellspacing="0" class="tab01">
+                        <tr>
+                            <td>排名</td>
+                            <td>姓名</td>
+                            <td>考试成绩</td>
+                            <td>录取学校</td>
+                        </tr>
+                        <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=2009 and subcatid=1 order by score desc limit 5">
+                            <tr>
+                                <td>{$i}</td>
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td>{$r.score}分</td>
+                                <td>{$r.admission}</td>
+                            </tr>
+                        </YP:list>
+                        <tr>
+                            <td colspan="4" style="text-align:right;"><a href="/top30/?year=2009" style=" color:#15BBF9; " target="_blank">更多>></a></td> 
+                        </tr>
+                    </table>
+                </div>
+            </div> 
+            <!--change01 end-->
+            <p><img src="/Yourphp/Tpl/Home/Default/Public/images/wp_bottom.jpg" /></p>
+        </div>
+
+    </div>
+</div>
+<div class="cont02">
+    <div class="c2left">
+        <div class="titleb2">辅导效果</div>
+        <div class="mas2 height1">
+            {$site_info.index_xiaoguo_html}
+        </div>
+        <p class="c2leftbottom"></p>
+    </div>
+    <div class="c2right">
+        <div class="titleb2">明星学员</div>
+        <div class="mas3">
+            <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and catid=47 and subcatid=3 order by listorder desc  limit 1">
+                <dl class="dl01">
+                    <dt><img src="{$r.thumb}" width="112" height="88" /></dt>
+                    <dd>{$r.title}</dd>
+                    <dd>录取学校：{$r.admission|str_cut=###,6}</dd>
+                    <dd>考试成绩：{$r.score}</dd>
+                    <dd>辅导科目：{$r.subject|str_cut=###,6}</dd>
+                </dl> 
+                <div class="ganxiang1">{$r.speech|str_cut=###,90}</div>
+                <div class="more01"><a href="{$r.url}" target="_blank"></a></div>
+            </YP:list>
+        </div>
+        <div class="titleb2_btm"></div>
+    </div>
+</div>
+<div class="cont02">
+    <div class="c2left"> 
+        <div class="titleb3">
+            <span class="sp03">强大师资</span>
+            <a href="javascript:;" class="aCur33">高中</a>
+            <a href="javascript:;">初中</a>
+            <a href="javascript:;">小学</a>
+        </div>
+        <div class="mas2">
+            <div class="jsbox">
+                <YP:list sql="SELECT * FROM tbl_teacher where posid=1 and find_in_set('3',grade_ids) and siteid=$mysiteid order by listorder desc limit 4">
+                    <div class="dl02">
+                        <div class="jstupian"><a href="{$r.url}" target="_blank"><img width="162" height="127" src="{$r.thumb}" /></a></div>
+                        {if $key==0}
+                        <div class="jsjieshao">
+                            {else}
+                            <div class="jsjieshao" style="display:none;">
+                                {/if}
+                                <p class="jsname"><a href="{$r.url}" target="_blank">{$r.title}</a></p>
+                                <p class="jskemu">授课科目：{$r.course_ids|getcourse}</p>
+                                <p class="dd01"><a href="{$r.url}" class="a02" target="_blank"></a><a href="{$r.url}" target="_blank">查看TA的资料</a></p>
+                            </div>
+                        </div>
+                </YP:list>
+            </div>
+            <!--js box 01 end-->
+            <div class="jsbox">
+                <YP:list sql="SELECT * FROM tbl_teacher where posid=1 and find_in_set('2',grade_ids) and siteid=$mysiteid order by listorder desc limit 4">
+                    <div class="dl02">
+                        <div class="jstupian"><a href="{$r.url}" target="_blank"><img width="162" height="127" src="{$r.thumb}" /></a></div>
+                        {if $key==0}
+                        <div class="jsjieshao">
+                            {else}
+                            <div class="jsjieshao" style="display:none;">
+                                {/if}
+                                <p class="jsname"><a href="{$r.url}" target="_blank">{$r.title}</a></p>
+                                <p class="jskemu">授课科目：{$r.course_ids|getcourse}</p>
+                                <p class="dd01"><a href="{$r.url}" class="a02" target="_blank"></a><a href="{$r.url}" target="_blank">查看TA的资料</a></p>
+                            </div>
+                        </div>
+                </YP:list>
+            </div>
+            <!--js box 01 end-->
+            <div class="jsbox">
+                <YP:list sql="SELECT * FROM tbl_teacher where posid=1 and find_in_set('1',grade_ids) and siteid=$mysiteid order by listorder desc limit 4">
+                    <div class="dl02">
+                        <div class="jstupian"><a href="{$r.url}" target="_blank"><img width="162" height="127" src="{$r.thumb}" /></a></div>
+                        {if $key==0}
+                        <div class="jsjieshao">
+                            {else}
+                            <div class="jsjieshao" style="display:none;">
+                                {/if}
+                                <p class="jsname"><a href="{$r.url}" target="_blank">{$r.title}</a></p>
+                                <p class="jskemu">授课科目：{$r.course_ids|getcourse}</p>
+                                <p class="dd01"><a href="{$r.url}" class="a02" target="_blank"></a><a href="{$r.url}" target="_blank">查看TA的资料</a></p>
+                            </div>
+                        </div>
+                </YP:list>
+            </div>
+            <!--js box 01 end-->
+        </div>
+        <p class="c2leftbottom"></p>
+    </div>
+
+    <div class="c2right">
+        <div class="titleb2">学力测试</div>
+        <div class="mas4">
+            {$site_info.index_test_html}
+        </div>
+        <div class="titleb2_btm"></div>
+    </div>
+</div>
+<div class="top50">
+    <div class="titlebox2">
+        <span class="sp03">服务流程</span>
+    </div>
+    <div class="top50box">
+        <p>{$site_info.index_fuwu_html}</p>
+    </div>
+</div>
+<div class="zx">
+    <div class="zxleft">
+        <h3 class="newstitle">王牌资讯</h3>
+        <div class="newsbor">
+            <div class="newsbox">
+                <h3 class="newstit"><strong>学校资讯</strong><a href="/tongzhi" target="_blank">更多>></a></h3>
+                <ul class="newslist">
+                    <YP:list sql="SELECT * FROM tbl_article where posid=1 and siteid=$mysiteid and catid=3 order by listorder desc limit 5">
+                        <li><a href="{$r.url}" target="_blank" target="_blank" ><span>[{$r.catname}]</span>{$r.title|str_cut=###,26}</a></li>
+                    </YP:list>
+                </ul>
+            </div>
+            <div class="newsbox">
+                <h3 class="newstit"><strong>媒体报道</strong><a href="/baodao" target="_blank">更多>></a></h3>
+                <ul class="newslist">
+                    <YP:list sql="SELECT * FROM tbl_article where posid=1 and siteid=$mysiteid and catid=35 order by listorder desc limit 5">
+                        <li><a href="{$r.url}" target="_blank">{$r.title|str_cut=###,40}</a></li>
+                    </YP:list>
+                </ul>
+            </div>
+            <div class="newsbox">
+                <h3 class="newstit"><strong>两代之间</strong><a href="/jiazhang" target="_blank">更多>></a></h3>
+                <ul class="newslist">
+                    <YP:list sql="SELECT * FROM tbl_article where posid=1 and siteid=$mysiteid and catid=58 order by listorder desc limit 5">
+                        <li><a href="{$r.url}" target="_blank">{$r.title|str_cut=###,40}</a></li>
+                    </YP:list>
+                </ul>
+            </div>
+            <div class="newsbox">
+                <h3 class="newstit"><strong>名人家教</strong><a href="/jiajiao" target="_blank">更多>></a></h3>
+                <ul class="newslist">
+                    <YP:list sql="SELECT * FROM tbl_article where posid=1 and siteid=$mysiteid and catid=53 order by listorder desc limit 5">
+                        <li><a href="{$r.url}" target="_blank">{$r.title|str_cut=###,40}</a></li>
+                    </YP:list>
+                </ul>
+            </div>
+            <div class="newsbox">
+                <h3 class="newstit"><strong>教学故事</strong><a href="/gushi" target="_blank">更多>></a></h3>
+                <ul class="newslist">
+                    <YP:list sql="SELECT * FROM tbl_article where posid=1 and siteid=$mysiteid and catid=54 order by listorder desc limit 5">
+                        <li><a href="{$r.url}" target="_blank">{$r.title|str_cut=###,40}</a></li>
+                    </YP:list>
+                </ul>
+            </div>
+            <div class="newsbox">
+                <h3 class="newstit"><strong>精彩专题</strong><a href="/zhuanti" target="_blank">更多>></a></h3>
+                <ul class="newslist">
+                    <YP:list sql="SELECT * FROM tbl_article where posid=1 and siteid=$mysiteid and catid=59 order by listorder desc limit 5">
+                        <li><a href="{$r.url}" target="_blank">{$r.title|str_cut=###,40}</a></li>
+                    </YP:list>
+                </ul>
+            </div>
+        </div>
+        <p class="p04"></p>
+    </div>
+    <div class="c2right">
+        <div class="titleb2">辅导体系</div>
+        {$site_info.index_tixi_html}
+        <div class="titleb2">常见问题</div>
+        <div class="mas5">
+            {$site_info.index_faq_html}
+        </div>
+        <div class="titleb2_btm"></div>
+    </div>
+</div>
+<!--news end-->
+<div class="cont02">
+    <div class="c2left"> 
+        <div class="titleb3">
+            <span class="sp03">辅导模式</span>
+        </div>
+        <div class="mas6">
+            {$site_info.index_model_html}
+        </div>
+        <p class="c2leftbottom"></p>
+    </div>
+
+    <div class="c2right">
+        <div class="titleb2">品牌故事</div>
+        <div class="mas7">
+            {$site_info.index_brand_html}
+        </div>
+        <div class="titleb2_btm"></div>
+    </div>
+</div>
+<!--fudaomosi end-->
+<div class="top50">
+    <div class="titlebox xuexibox">
+        <span class="sp07">学习中心</span><volist name="list_school" id="vo"><a href="javascript:;">{$vo.name}</a></volist>
+    </div>
+    <div class="top50box">
+        <volist name="list_school" id="vo">
+            {if $key==0}
+            <div class="maps">
+                {else}
+                <div class="maps" style="display: none">
+                    {/if}
+                    <volist name="vo.school" id="vos">
+                        <dl>
+                            <dt><a href="{$vos.url}" target="_blank"><img src="{$vos.thumb}" width="220" height="165"></a></dt>
+                            <dd><a href="{$vos.url}" target="_blank">{$vos.title}</a></dd>
+                            <dd>{$vos.phone}</dd>
+                            
+                        </dl>
+                    </volist>
+                </div>
+        </volist>
+        <!--maps 01 end-->
+        <p><img src="/Yourphp/Tpl/Home/Default/Public/images/wp_bottom.jpg"></p>
+    </div>
+
+</div>
+<p class="clear links"><img src="/Yourphp/Tpl/Home/Default/Public/images/links.jpg" /></p>
+<div class="linkbox">
+    <YP:list sql="SELECT * FROM tbl_link where  siteid=$mysiteid order by listorder desc limit 100">
+        <a href="{$r['siteurl']}" target="_blank" title="{$r['name']}">{$r['name']}</a>
+    </YP:list>
+</div>

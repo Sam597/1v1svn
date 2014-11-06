@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="{$seo_keywords}" />
+        <meta name="description" content="{$seo_description}" />
+        <meta name="author" content="{$site_name}">
+            <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+            <title>{$seo_title}-{$site_name}</title>
+            <link href="/Yourphp/Tpl/Home/Default/Public/css/css.css" type="text/css" rel="stylesheet" />
+            <script type="text/javascript" src="/Yourphp/Tpl/Home/Default/Public/js/jquery.min.js"></script>
+            <script type="text/javascript" src="/Yourphp/Tpl/Home/Default/Public/js/js.js"></script>
+    </head>
+    <body>
+        <div  class="warp" style="overflow:visible;">
+            <div class="cont" style="overflow:visible;">
+                <div class="top">
+                    <div class="logo_box">
+                        <p class="fl"><a href="#"><img src="/Yourphp/Tpl/Home/Default/Public/images/logo.jpg" /></a></p>
+                        <div class="change_city">
+                            <p class="p01">
+                                <strong>
+                                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where id=$mysiteid limit 1">
+                                        {$r.name}
+                                    </YP:list>
+                                </strong></p>
+                            <div class="change">
+                                <div id="city-box">
+                                    <span class="p24">切换城市</span>
+                                    <div class="citychange" style="display:none;">  
+                                        <p><strong>分站：</strong>
+                                            <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where level=1">
+                                                <?php $domain=explode(',',$r['domain']);?>
+                                                <a href="http://{$domain[0]}">{$r.name}</a>
+                                            </YP:list>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top_bar">
+                        <div class="top_nav">
+                            <!--                            <div id="droplist_brand" style="float: left;padding-left:4px">
+                                                            <div id="droplist_brand_box">
+                                                                <a  href="#" class="icon01">旗下品牌</a>
+                                                                <div class="droplist brand droplist_brand">
+                                                                    <ul>
+                                                                        <li><a href="http://www.xwp.cn" >精品小班</a></li>
+                                                                        <li><a href="http://www.ewangpai.com" >王牌1对1</a></li>
+                                                                        <li><a href="http://www.wpjj.cn" >王牌家教</a></li>
+                                                                    </ul>   
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div style="float: left;padding-left: 4px">┊</div>-->
+                            <div style="float: left;padding-left: 40px">
+                                <a href="http://qiao.baidu.com/v3/?module=default&controller=webim&action=index&siteid=1665870" target="_blank">在线咨询</a>
+                            </div>
+                            <div style="float: left;padding-left: 30px">&nbsp;</div>
+                            <div style="float: left;padding-left: 4px">
+                                <a target="_blank" href="/baoming/?id={$id}&coursename={$title}">在线报名</a></div>
+                            <div style="float: left;padding-left: 20px">&nbsp;</div>
+                            <div style="float: left;padding-left: 4px">
+                                <a href="__APP__/jianyi" target="_blank">提建议</a></div>
+                            <div style="float: left;padding-left: 10px">&nbsp;</div>
+
+                            <div id="droplist_brand" style="float: left;padding-left: 15px">
+                                <div id="droplist_brand_box">
+                                    <a  href="#" class="icon01" >旗下品牌</a>
+                                    <div class="droplist droplist_brand" style="line-height: 25px;">
+                                        <ul>
+                                            <li><a href="http://www.xwp.cn" target="_blank">精品小班</a></li>
+                                            <li><a href="http://www.ewangpai.com" target="_blank">王牌1对1</a></li>
+                                            <li style=" padding-bottom: 10px;"><a href="http://www.wpjj.cn" target="_blank">王牌家教</a></li>
+                                           
+                                        </ul>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="tel"><a  href="__APP__/baoming" target="_blank">
+                               {$top_phone}
+                        </p>
+                    </div>
+                </div>
+                <script>
+                    $('#droplist_site,#droplist_brand').hover(
+                    function(){
+                        var cDom=$(this).attr('id');
+                        $('.'+cDom).show();
+                        $('#'+cDom+'_box').addClass(cDom+'_box');
+                        $(this).after('<div id="dropreplace" class="'+cDom+'_replace"></div>')
+                    },
+                    function(){
+                        $('.'+$(this).attr('id')).hide();
+                        $('#'+$(this).attr('id')+'_box').removeClass($(this).attr('id')+'_box');
+                        $('#dropreplace').remove();
+                    })
+                </script>
+                <!--top end-->
+            </div>
+            <!--cont part01 end-->
+            <div style="clear:both"></div>
+            <div class="nav">
+                <YP:nav id="nav" catid="0" level="3" enname="1"  home="网站首页" />
+            </div>
+            <!--nav end-->
+
+        </div>
+        <script type="text/javascript">
+            var APP	 =	 '__APP__';
+            var ROOT =	 '__ROOT__';
+            var PUBLIC = '__PUBLIC__';
+            var bcid='{$bcid}'?'{$bcid}':0;
+            $('#nav_'+bcid).addClass('navCur');
+            //yourphpnav.init({navid: "nav"});
+            //var nav = document.getElementById('nav_{$bcid}');nav.className=nav.className+" on";
+        </script>
+        <div class="warp"><div id="main">
+                <div class="c"></div>

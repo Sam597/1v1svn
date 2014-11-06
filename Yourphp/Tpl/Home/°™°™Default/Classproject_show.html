@@ -1,0 +1,190 @@
+<link href="/Yourphp/Tpl/Home/Default/Public/css/content.css" type="text/css" rel="stylesheet" />
+<style>
+    .intro{border-bottom:2px solid #ff6600;float: left;width: 690px}
+    /*    .subnav{margin-top:10px;width:690px;float:left;background:url(../images/tab-bg.gif) repeat-x bottom;height:35px; line-height:35px;overflow: hidden}
+        .subnav li{float:left;background: #fff9f3;width:100px;text-align:center;border:1px solid #e2e2e2;height:33px;margin-right: 15px}*/
+    /*    .intro li{
+            float: left;
+            width: 80px;
+            text-align: center;
+            line-height: 40px;
+            border-top: 1px solid #e2e2e2;
+            border-left: 1px solid #e2e2e2;
+            border-right: 1px solid #e2e2e2;
+            margin-right: 10px;
+        }
+    */
+    .subnav li.C_curr{
+        color: #666;
+        background: #fff;
+    }
+    .intro-show{padding-top:15px;line-height:25px;color:#666;float: left}
+    .baseinfo{}
+    .class_thumb{width: 360px;float:left;}
+    .class_detail{width:300px;float: left;padding:0px 20px}
+    .class_detail dl dd{margin-left: 0;line-height: 30px}
+
+</style>
+<div class="warp">
+    <YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=3 and  siteid=$mysiteid  order by listorder desc  limit 1">
+        <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+    </YP:list>
+    <div class="cont02">
+        <div class="cont_left fl">
+            <!--            <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span></h3>-->
+            <div class="teachercontent">
+                <h3 class="title08" style="text-align:left;padding: 0px;margin-bottom: 15px">{$title} </h3>
+                <div class="hide">
+
+                    <div class="baseinfo">
+                        <div class="class_thumb">
+                            <img src="<if condition="$thumb eq ''">/Yourphp/Tpl/Home/Default/Public/images/bnopic.jpg<else/><{$thumb}></if>" width="360" height="270" data-pinit="registered">
+                        </div>
+                        <div class="class_detail">
+                            <dl style="line-height:25px;padding-top: 0">
+                                <dd class="dd4"> <strong>单价：</strong><font color="#ff6600">{$oneprice}</font></dd>
+                                <dd class="dd4"><span style="padding-left: 0px"> <strong>总价：</strong>￥:{$price}</span><span style="padding-left: 30px"><strong>讲数：</strong>{$coursewarenum}</span> </dd>
+                                <dd class="dd4"><strong>名额情况：</strong>{$enrollstate} </dd>
+                                <dd class="dd4"><span><strong>课程年级：</strong>{$grade_id} </span></dd>
+                                <dd class="dd4"><strong>课程学期：</strong>{$term} </dd>
+                                <dd class="dd4"><strong>班级层次：</strong>{$level} </dd>
+                                <dd class="dd4"><strong>上课校区：</strong><a href="__APP__/xiaoqu/show/{$school2id}.html" target="_blank" style="color:#ff6600">{$schoolname}</a></dd>
+                                <dd class="dd4"><strong>任课老师：</strong><a href="__APP__/jiaoshi/show/{$teacher2id}.html" target="_blank" style="color:#ff6600">{$teacher_id}</a> </dd>
+                                <dd class="dd4"><strong>特别说明：</strong>{$additiondesc} </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div class="dd4" style="line-height: 55px">
+                            <span style="float: right;text-align:right"><a href="http://qiao.baidu.com/v3/?module=default&controller=webim&action=index&siteid=1665870" target="_blank"><img src="/Yourphp/Tpl/Home/Default/Public/images/zixun.jpg" ></a>
+                                <a target="_blank" href="/baoming/?id={$id}&coursename={$title}"><img src="/Yourphp/Tpl/Home/Default/Public/images/baoming.jpg" ></a></span>
+                            <span><strong>开课日期：</strong>{$coursestart|toDate=###,'Y-m-d'} 到 {$courseend|toDate=###,'Y-m-d'}</span><span style="padding-left:10px"><strong>上课时间：</strong>{$classdate}{$classtime} </span>
+                        </div>
+                        <div class="subnav">
+                            <ul>
+                                <li class="C_curr">课程介绍</li>
+                                <li class="">课程大纲</li>
+                                <li class="">课程表</li>
+                            </ul>
+                        </div>
+                        <div class="intro-show">
+                            {$content}
+                        </div>
+                        <div class="intro-show" style="display:none">
+                            {$courseplan}
+                        </div>
+                        <div class="intro-show" style="display:none">
+                            {$coursetable}
+                        </div>
+
+                        <script>
+                            //处理TAB切换
+                            $(".intro-show:first").show();
+                            $('.subnav li').mouseover(function(){
+                                $('.intro-show').hide();$('.C_curr').removeClass();
+                                var curr_index=$('.subnav ul li').index(this);
+                                $('.intro-show').eq(curr_index).show();
+                                $(this).addClass('C_curr');
+                            })
+                        </script>
+                        <style>
+                            .classtable{line-height: 35px;margin-top: 20px;border-top: 1px solid #ccc;border-left: 1px solid #ccc;color:#666}
+                            .classtable td{border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;}
+                            .classtable a{color:#ff6600}
+                        </style>
+                        <div class="clear"></div>
+                        <h3 class="title05" style="margin-top:20px;" ><span>其他课程</span></h3>
+
+                        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" class="classtable">
+                            <tbody>
+                                <tr align="center" valign="middle" bgcolor="#f3f3f3">
+                                    <td width="120">班级名称</td>
+                                    <td width="50">学期</td>
+                                    <td width="100">每周频次</td>
+                                    <td width="70">辅导时间</td>
+                                    <td width="80" >费用</td>
+                                    <td width="50" >校区</td>
+                                    <td width="50">任课老师</td>
+                                    <td width="50">名额情况</td>
+                                    <td width="30" >报名</td>
+                                </tr>
+                            <YP:list order="id desc" sql="SELECT a.*,b.name as grade,c.name as school,d.teachername,e.name as course,f.title as term  FROM tbl_classproject a left join tbl_grade b on a.grade_id=b.id left join tbl_site c on a.schoolid=c.id left join tbl_teacher as d on a.teacher_id=d.id left join tbl_course as e on a.course_id=e.id left join tbl_term as f on f.id=a.term_id where a.schoolid=$schoolid and a.grade_id=$gradeid">
+                                <tr align="center" valign="middle" bgcolor="#FFFFFF">
+                                    <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                    <td >{$r.term}</td>
+                                    <td >{$r.classdate}</td>
+                                    <td >{$r.classtime}</td>
+                                    <td >{$r.oneprice}</td>
+                                    <td ><a target="_blank" href="/xiaoqu/show/{$school2id}.html">{$r.school}</a></td>
+                                    <td ><a target="_blank" href="/jiaoshi/show/{$r.teacher_id}.html">{$r.teachername}</a></td>
+                                    <td >{$r.enrollstate}</td>
+                                    <td ><a target="_blank" href="/baoming/?id={$r.id}&coursename={$r.title}">报名</a></td>
+                                </tr>
+                            </YP:list>  
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="newcont_right fr">
+            <div class="right-picloop">
+                <h3>热招课程</h3>
+                <ul>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_classproject where siteid=$mysiteid and posid=3 limit 6">
+                        <li>
+                            <a href="{$r.url}" title="{$r.title}" target="_blank">
+                                <img src="{$r.thumb}" width="100" height="75"/>
+                                <p style="width:100px;height:23px;overflow: hidden">{$r.title}
+                                    <!--                                </br><font color="#999">学科:物理</font>-->
+                                </p>
+                            </a>
+                        </li>
+                    </YP:list>
+                </ul>
+            </div>
+            <div class="right-studentloop">
+                <h3>光荣榜单</h3>
+                <ul>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_chengonganli where siteid=$mysiteid and catid=46 limit 3">
+                        <li>
+                            <a href="{$r.url}" title="{$r.title}" target="_blank">
+                                <img src="{$r.thumb}" width="100" height="75"/>
+                                <div>
+                                    <b><font color="#ff600">{$r.title}</font></b>
+                                    </br>来自：{$r.student_school}
+                                    </br>考入：{$r.admission}
+
+                                </div>
+                            </a>
+                        </li>
+                    </YP:list>
+                    <div class="clear"></div>
+
+                </ul>
+            </div>
+            <div class="right-studentloop">
+                <h3>进步典范</h3>
+                <ul>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_chengonganli where siteid=$mysiteid and catid=47 limit 3">
+                        <li>
+                            <a href="{$r.url}" title="{$r.title}" target="_blank">
+                                <img src="{$r.thumb}" width="100" height="75"/>
+                                <div>
+                                    <b><font color="#ff600">{$r.title}</font></b>
+                                    </br>辅导前：{$r.oldscore}
+                                    </br>辅导后：{$r.nowscore}
+
+                                </div>
+                            </a>
+                        </li>
+                    </YP:list>
+                    <div class="clear"></div>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

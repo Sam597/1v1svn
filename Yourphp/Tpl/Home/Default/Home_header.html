@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{$seo_title}-{$site_name}</title>
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="{$seo_keywords}" />
+        <meta name="description" content="{$seo_description}" />
+        <meta name="author" content="{$site_name}">
+            <link href="/Yourphp/Tpl/Home/Default/Public/css/css.css" type="text/css" rel="stylesheet" />
+            <script type="text/javascript" src="/Yourphp/Tpl/Home/Default/Public/js/DD_belatedPNG.js" ></script>
+            <script type="text/javascript" src="/Yourphp/Tpl/Home/Default/Public/js/jquery.min.js" ></script>
+            <script type="text/javascript" src="/Yourphp/Tpl/Home/Default/Public/js/js.js" ></script>
+            <!--[if lte IE 6]>
+            <script type="text/javascript" src="js/DD_belatedPNG.js"></script>
+            <script type="text/javascript">
+            DD_belatedPNG.fix('*');
+            </script>
+            <![endif]-->
+    </head>
+
+    <body>
+        <div class="warp"> 
+            <div class="topbarbox">
+                <div class="topbar">
+                    <a href="http://qiao.baidu.com/v3/?module=default&controller=webim&action=index&siteid=2906238" class="a01" target="_blank">在线咨询</a> | <a href="/baoming/?id=&coursename=" class="a01" target="_blank">在线报名</a> | <a href="/jianyi" class="a01" target="_blank">提点建议</a> | <span  class="a01 span01">旗下品牌
+                        {$top_site}
+                    </span>
+                </div>
+            </div>
+            <!--top bar end-->
+            <div class="nav_box">
+                <img src="/Yourphp/Tpl/Home/Default/Public/images/logo1.jpg" style="position: absolute;left: 455px;top:30px;">
+                    <div id="cc">
+                        <div class="city"><YP:list order="listorder desc" sql="SELECT * FROM tbl_site where id=$mysiteid limit 1">{$r.name}</YP:list>&nbsp;▼</div>
+                        <div class="change_city">
+                            <strong>分站：</strong>
+                            <ul>
+                                <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where level=1 and isshow=1">
+                                    <?php $domain=explode(',',$r['domain']);?>
+                                    <li><a href="http://{$domain[0]}" target="_blank" >{$r.name}</a></li>
+                                </YP:list>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tel"><a href="/baoming"  target="_blank" >{$top_phone}</a>
+                    </div>
+                    <div class="nav_list">
+                        <li class="nli" id="nav_0"><a href="/">首页</a></li>
+                        <li class="nli" id="nav_57"><a href="/tixi">体系</a></li>
+                        <li class="nli" id="nav_56"><a href="/duixiang">对象</a></li>
+                        <li class="nli" id="nav_51"><a href="/kecheng">课程</a></li>
+                        <li class="nli" id="nav_50" style=" background:none;"><a href="/jiaoshi">名师</a></li>
+                        <li class="changeCity"></li>
+                        <li class="nli" id="nav_24"><a href="/chengji">成绩</a></li>
+                        <li class="nli" id="nav_61"><a href="/ceping">测评</a></li>
+                        <li class="nli"  id="nav_1"><a href="/zixun">资讯</a></li>
+                        <li class="nli"  id="nav_34"><a href="/xiaoqu">中心分布</a></li>
+                        <li class="nli"  id="nav_8" style=" background:none;"><a href="/women">了解王牌</a></li>
+                    </div>
+            </div>
+
+            <script type="text/javascript">
+                var APP	 =	 '__APP__';
+                var ROOT =	 '__ROOT__';
+                var PUBLIC = '__PUBLIC__';
+                var bcid='{$bcid}'?'{$bcid}':0;
+                $('#nav_'+bcid).find('a').addClass('NaCur');
+                //yourphpnav.init({navid: "nav"});
+                //var nav = document.getElementById('nav_{$bcid}');nav.className=nav.className+" on";
+            </script>

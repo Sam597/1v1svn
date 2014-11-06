@@ -1,0 +1,319 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=4 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+</YP:list>
+<style>
+    ul.pic_style li { float:left;width:230px;height:190px;}
+    ul.pic_style li p{ text-align: center;width:200px;}
+    ul.interview li { float:left;width:340px;line-height:35px;margin-right:10px;}
+    .tablesheet td{padding:8px}
+</style>
+<link href="/Yourphp/Tpl/Home/Default/Public/css/content.css" type="text/css" rel="stylesheet" />
+<div class="left">
+    <div class="cont02">
+
+        <div class="cont_left fl">
+<!--            <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span></h3>
+            <br />-->
+            <div class="bdcont" style="color: #666">
+                <!--            	<h3 class="mainTitle" style="margin:10px 0 0 0">名师之队</h3>-->
+                <div class="hide mscont" style="width:695px;margin-top: 20px">
+
+                    <div class="teacher_pic">
+                        <img src="{$thumb}" width="600" height="455">
+                    </div>
+                    <div style="margin:0 auto;width:450px;padding:10px;font-size:14px;font-weight: bold;line-height: 35px;color:#ff6600;text-align:center">
+                        “{$signword}”</br>
+                        <div><font color="#999">---{$title}</font></div>
+                    </div>
+
+                    <!--                    <div style="margin:0 auto;width:450px">
+                                            <dl style="border:0">
+                                                <dd class="dd10" style="text-align:center"><strong>{$title}</strong></dd>
+                                                <dd class="dd11">{$signword}</dd>
+                                            </dl>
+                                        </div>-->
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f9f9f9" class="tablesheet">
+                        <tr>
+                            <td height="25">我的大学：{$graduation}</td>
+                            <td height="25">我的学历：{$degree}</td>
+                        </tr>
+                        <tr>
+                            <td height="25">授课年级：{$grade_ids}<?php echo implode(',',$grade_ids); ?></td>
+                            <td height="25">授课科目：{$course_ids}<?php echo implode(',',$course_ids); ?></td>
+                        </tr>
+                      
+                    </table>
+                    
+                    {if $content}
+                    <div class="jcbox">
+                        <h3 class="title05"><span>教师介绍</span></h3>
+                        <div class="jc_cont">
+                            <p>{$content}</p>
+                        </div>
+                    </div>
+                    {/if}
+                  
+                    <div class="jcbox">
+                        <h3 class="title05"><span>教学成绩</span></h3>
+                        <div class="jc_cont">
+                            <p>{$achievement}</p>
+                        </div>
+                    </div>
+                   <div class="jcbox">
+                        <h3 class="title05"><span>学生评价</span></h3>
+                        <div class="jc_cont">
+                            <p>{$comment}</p>
+                        </div>
+                    </div>
+                     <div class="jcbox">
+                        <h3 class="title05"><span>课堂实拍</span></h3>
+                        <div class="jc_cont">
+                            <ul class="pic_style">
+                                <volist name="classpic" id="vo">
+                                    <li><p>{$vo.filename}</p><img src="{$vo.filepath}" width="200" /></li>
+                                </volist>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="jcbox">
+                        <h3 class="title05"><span>专用教材</span></h3>
+                        <div class="jc_cont">
+                            <ul class="pic_style">
+                                <volist name="textbook" id="vo">
+                                    <li><p>{$vo.filename}</p><img src="{$vo.filepath}" width="200" /></li>
+                                </volist>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="jcbox">
+                        <h3 class="title05"><span>教学故事</span></h3>
+                        <div class="jc_cont">
+                            <ul class="interview">
+                                <YP:list order="listorder desc" sql="SELECT * FROM tbl_article where catid=54 and teacher_id=$id">
+                                    <li>·<a target="_blank" href="/gushi/show/{$r.id}.html" >{$r.title}</a></li>
+                                </YP:list>
+                            </ul>
+                        </div>
+                    </div>
+                   
+
+
+                    <div class="jcbox">
+
+                        <h3 class="title05" ><span>精品课程</span></h3>
+                        <div class="kbjh">
+                            <style>
+                                .classtable{line-height: 35px;margin-top: 20px;border-top: 1px solid #ccc;border-left: 1px solid #ccc;color:#666}
+                                .classtable td{border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;}
+                                .classtable a{color:#ff6600}
+                            </style>
+                            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" class="classtable">
+                                <tbody>
+                                <tr align="center" valign="middle" bgcolor="#f3f3f3">
+                                    <td width="120">班级名称</td>
+                                    <td width="50">学期</td>
+                                    <td width="100">每周频次</td>
+                                    <td width="70">辅导时间</td>
+                                    <td width="80" >费用</td>
+                                    <td width="50" >校区</td>
+                                    <td width="50">任课老师</td>
+                                    <td width="50">名额情况</td>
+                                    <td width="30" >报名</td>
+                                </tr>
+                                <YP:list order="id desc" sql="SELECT a.*,b.name as grade,c.name as school,d.teachername,e.name as course,f.title as term  FROM tbl_classproject a left join tbl_grade b on a.grade_id=b.id left join tbl_site c on a.schoolid=c.id left join tbl_teacher as d on a.teacher_id=d.id left join tbl_course as e on a.course_id=e.id left join tbl_term as f on f.id=a.term_id  where teacher_id=$id group by id">
+                            <tr align="center" valign="middle" bgcolor="#FFFFFF">
+                                <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                                <td >{$r.term}</td>
+                                <td >{$r.classdate}</td>
+                                <td >{$r.classtime}</td>
+                                <td >{$r.oneprice}</td>
+                                <td >{$r.school}</td>
+                                <td ><a target="_blank" href="/jiaoshi/show/{$r.teacher_id}.html">{$r.teachername}</a></td>
+                                <td >{$r.enrollstate}</td>
+                                <td ><a target="_blank" href="/baoming/?id={$r.id}&coursename={$r.title}">报名</a></td>
+                            </tr>
+                                </YP:list>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="newcont_right fr">
+            <div class="right-picloop">
+                <h3>名师推荐</h3>
+                <ul>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_teacher where siteid=$mysiteid limit 10">
+                        <li>
+                            <a href="{$r.url}" title="{$r.title}" target="_blank">
+                                <img src="{$r.thumb}" width="100" height="75"/>
+                                <p>{$r.title}
+                                    <!--                                </br><font color="#999">学科:物理</font>-->
+                                </p>
+                            </a>
+                        </li>
+                    </YP:list>
+                </ul>
+            </div>
+            <div class="right-textloop">
+                <h3>教学故事</h3>
+                <ul>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_article where siteid=$mysiteid and teacher_id!=0 limit 8">
+                        <li>
+                            <a href="{$r.url}" title="{$r.title}" target="_blank">
+                                ·{$r.title}
+                            </a>
+                        </li>
+                    </YP:list>
+                    <div class="clear"></div>
+
+                </ul>
+            </div>
+            <div class="kmchange" id="filter">
+
+                <!--<dl>
+                    <dt>年级</dt>
+                    <dd>
+                        <a id="g0" data-id="0" data-parma="grade" href="javascript:;" >不限</a>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_grade">
+                        <a id="g{$r.id}" href="javascript:;" data-id="{$r.id}" data-parma="grade">{$r.name}</a>
+                    </YP:list>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>科目</dt>
+                    <dd>
+                        <a id="c0" data-id="0" data-parma="course" href="javascript:;">不限</a>
+                    <--注释--YP:list order="listorder desc" sql="SELECT * FROM tbl_course where grade_id=$grade_id">
+                        <a id="c{$r.id}" href="javascript:;" data-id="{$r.id}" data-parma="course">{$r.name}</a>
+                    </YP:list>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>区域</dt>
+                    <dd>
+                        <a id="a0" data-id="0" data-parma="area" href="javascript:;" >不限</a>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where siteid=$mysiteid and level=2">
+                        <a id="a{$r.id}" href="javascript:;" data-id="{$r.id}" data-parma="area">{$r.name}</a>
+                    </YP:list>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>校区</dt>
+                    <dd>
+                        <a id="s0" data-id="0" data-parma="school" href="javascript:;" >不限</a>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where areaid=$areaid and level=3">
+                        <a id="s{$r.id}" href="javascript:;" data-id="{$r.id}" data-parma="school">{$r.name}</a>
+                    </YP:list>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>层次</dt>
+                    <dd>
+                        <a id="l0" data-id="0" data-parma="level" href="javascript:;" >不限</a>
+                    <YP:list order="listorder desc" sql="SELECT * FROM tbl_level">
+                        <a id="l{$r.id}" href="javascript:;" data-id="{$r.id}" data-parma="level">{$r.name}</a>
+                    </YP:list>
+                    </dd>
+                </dl>-->
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $('#g1').addClass('kmac');
+    $('#a0').addClass('kmac');
+    $('#s0').addClass('kmac');
+    $('#l0').addClass('kmac');
+    $('#c0').addClass('kmac');  
+    //    $('#g'+{$grade_id}).addClass('kmac');
+    //    $('#a'+{$areaid}).addClass('kmac');
+    //    $('#s'+{$schoolid}).addClass('kmac');
+    //    $('#l'+{$level_id}).addClass('kmac');
+    //    $('#c'+{$course_id}).addClass('kmac');
+    //    //科目多选
+    //    var arrC='{$course}'.split(',');
+    //    for(var k in arrC){
+    //        $('#c'+arrC[k]).addClass('kmac');
+    //    }
+    $('#filter a').click(function(){
+        var urlStr='',curl=getRequest(),
+        id=$(this).data('id').toString(),
+        parma=$(this).data('parma');
+        //        //处理课程多选
+        //        if(parma=='course'){
+        //            if(curl['course']){
+        //                if(0==id){
+        //                    curl['course']=0;
+        //                }else{ 
+        //                    if(0==curl['course']){
+        //                        curl['course']=id;
+        //                    }else{
+        //                        arrCourse=curl['course'].split(',');
+        //                        if('-1'==jQuery.inArray(id, arrCourse)){
+        //                            curl['course']=curl['course']+','+id;
+        //                        }else{
+        //                            arrCourse[jQuery.inArray(id, arrCourse)]=undefined;
+        //                            var courseStr='';
+        //                            for(var k in arrCourse){
+        //                                if(undefined!=arrCourse[k]){
+        //                                    courseStr+=arrCourse[k]+',';
+        //                                } 
+        //                            }
+        //                            curl['course']=courseStr.slice(0,-1);
+        //                        }       
+        //                    }
+        //                }
+        //            }else{
+        //                curl[parma]=id;
+        //            }
+        //        }else{
+        curl[parma]=id;//赋值或修改参数
+        //        }
+        //选择年纪清空科目
+        if('grade'==parma){
+            curl['course']=0;
+        }
+        //选择区域清空校区
+        if('area'==parma){
+            curl['school']=0;
+        }
+        //组合url
+        for(var key in curl){
+            urlStr+=key+'='+curl[key]+'&'; 
+        }
+
+        window.location.href='/jiaoshi/?'+urlStr.slice(0,-1);
+    })
+    
+    //获取当前参数并转化数组
+    function getRequest()  
+    {  
+        var url = location.search; //获取url中"?"符后的字串  
+        var theRequest = new Array();  
+        if(url.indexOf("?") != -1)  
+        {  
+            var str = url.substr(1);  
+            strs = str.split("&");  
+            for(var i = 0; i < strs.length; i ++)  
+            {  
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+            }  
+        }  
+        return theRequest;  
+    }  
+</script>

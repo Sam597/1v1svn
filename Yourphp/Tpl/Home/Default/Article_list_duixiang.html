@@ -1,0 +1,50 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=2 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+</YP:list>
+
+<div class="weizhi">
+    <span class="fl"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></span>
+    <span class="fr" >
+        <form method="get" action="/Search/index">
+            <input type="text" name="search" class="search" placeholder="请输入搜索信息" value="" />
+            <input type="submit" class="search_btn" value="" />
+        </form>
+    </span>
+</div>
+<div class="anlibox">
+    <div class="anli_left">
+        <p class="p20"><img src="/Yourphp/Tpl/Home/Default/Public/images/icon20.jpg" /></p>
+        <ul class="ul10">
+            <YP:list sql="SELECT * FROM tbl_article where  siteid=$mysiteid and catid=$catid order by listorder desc limit 16">
+                <li <if condition="$r.id eq $id">class="liCur20"</if>  >
+                <a href="{$r.url}" <if condition="$r.id eq $id">class="aCur1"</if>  title="{$r.title}">{$r.title|str_cut=###,15}</a>
+                </li>
+            </YP:list>
+        </ul>
+    </div>
+    <div class="anli_right">
+        <h1 style="text-align: center;line-height: 35px;">{$title}</h1>
+        <div class="anlicont" style="padding-bottom: 30px">
+            {$content}            
+        </div>
+        <!--renwu xinxi-->
+        <div style="clear:both"></div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

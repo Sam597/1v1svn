@@ -1,0 +1,199 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=8 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+</YP:list>
+<div class="cont02">
+    <div class="cont_left fl">
+<!--        <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></h3>
+        </br>-->
+
+        <div class="bdcont">
+            <div class="hide mscont" style="width: 700px">
+                <div class="hide">
+                    <div class="picbox2 fl">
+                        <div class="focus">
+                            <div class="focuspic">
+                                <volist name="pic" id="vo">
+                                    <div class="indexbanner"><a href="#"><img width="320" height="240" src="{$vo['filepath']}" /></a></div>
+                                </volist>
+                            </div><!--focuspic end-->  
+
+                            <div class="scrollbox">
+                                <div id="prev" class="f-l scrollbtn disabled"></div>
+                                <div class="f-l scrollpic">
+                                    <ul>
+                                        <volist name="pic" id="vo">
+                                            <li class="current"><a href="#"><img width="56" height="48" src="{$vo['filepath']}" /></a></li>
+                                        </volist>
+
+                                    </ul>
+                                </div>
+                                <div id="next" class="f-r scrollbtn"></div>
+                            </div><!--scrollbox end-->
+
+                        </div><!--focus end-->
+                    </div>
+
+
+                    <div class="xqlist fr">
+                        <p class="p21">{$title}</p>
+                        <div class="xqmas">
+                            <h3 style="font-size:14px;">联系方式</h3>
+                            <p class="p19">校区电话</p>
+                            <p class="p20">{$phone}</p>
+                            <p class="p19">校区地址</p>
+                            <p class="p22">{$address}</p>
+                        </div>
+                        <p class="p23"><input type="button" onclick="window.location.href='/kecheng/?school={$schoolid}'" class="in01" /><input type="button" class="in02" /></p>
+                    </div>
+                </div>
+                <!--smleft end-->
+                <!--                <h3 class="title10" style="margin-top:20px;" ><span>校区简介</span></h3>-->
+                <h3 class="title05" style="margin-top:20px;" ><span>校区简介</span></h3>
+                <div class="xqjianjie" style="line-height: 25px">
+                    {$desc}
+                </div>
+                <h3 class="title05" style="margin-top:20px;" ><span>交通指南</span></h3>
+
+                <p class="xqjianjie">
+                    {$transport}     
+                </p>
+                <h3 class="title05" style="margin-top:20px;" ><span>在线地图</span></h3>
+                <p class="xqjianjie">
+                    {$schoolmap|stripslashes}     
+
+                </p>
+
+                <h3 class="title05" style="margin-top:20px;" ><span>校区热招</span></h3>
+                <div class="xqrz">
+                    <YP:list order="id desc" sql="SELECT a.*,b.name as grade,c.name as school FROM tbl_classproject a left join tbl_grade b on a.grade_id=b.id left join tbl_site c on a.schoolid=c.id where a.schoolid=$schoolid">
+                        <dl>
+                            <dt><a href="{$r.url}" target="_blank"><img src="<if condition="$r.thumb eq ''">/Yourphp/Tpl/Home/Default/Public/images/nopic.jpg<else/>{$r.thumb}</if>"  height="101" width="141" /></a></dt>
+                            <dd class="dd23"><strong><a href="{$r.url}" target="_blank"><font color="#ff6600">{$r.title}</font></a></strong></dd>
+                            <dd>年级：{$r.grade} </dd>
+                            <dd style="height:24px;overflow: hidden"><span>上课时间：{$r.classtime}</span></dd>
+                            <dd>￥{$r.price} <a target="_blank" href="/baoming/?id={$r.id}&coursename={$r.title}" class="ckxq" style="color: #ff6600">立刻报名</a></dd>
+                        </dl>
+                    </YP:list>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="cont_right fr">
+        <h3 class="title04">校区分布</h3>
+        <ul class="kclist">
+            <YP:list order="listorder desc" where="siteid=$mysiteid" catid="34" limit="1">
+                <li>
+                    <a href="{$r.url}" <if condition="$r.id eq $id">class="aCur1"</if>  title="{$r.title}">{$r.title|str_cut=###,15}</a>
+                </li>
+            </YP:list>
+            <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where siteid=$mysiteid and level=2 order by listorder desc">
+                <li>
+                    <a href="/xiaoqu/?search=1&areaid={$r.id}" <if condition="$r.id eq $areaid">class="aCur1"</if>  title="{$r.name}">{$r.name}</a>
+                </li>
+            </YP:list>
+
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        var animate_time=200;//动画时间：0.3秒
+        var interval_time=5000;//播放间隔时间：5秒
+        var picnumber=$(".scrollpic li").size()-1;//计算广告的数量
+        var slideclick = 0;//初始化
+
+        //循环函数
+        function autoplay(){
+            slideclick++;
+            if(slideclick<=picnumber){
+                $(".scrollpic li").eq(slideclick).trigger("dblclick");
+            }else{
+                $(".scrollpic li").eq(0).trigger("dblclick");
+                slideclick = 0
+            }
+        }
+        //设置循环时间，自动开始循环
+        var auto_setInterval = setInterval(autoplay,interval_time);
+        //悬停广告区域时播放停止
+        $(".focus").hover(function(){
+            clearInterval(auto_setInterval);
+        },function(){
+            auto_setInterval = setInterval(autoplay,interval_time);
+        });
+        //小图点击时，开始动画
+        $(".scrollpic li").dblclick(function(){	  
+            slideclick=$(".scrollpic li").index($(this));
+            $(".scrollpic li").removeClass("current");
+            $(this).addClass("current");
+            //大图上移
+            $(".focus .focuspic").animate({"marginLeft":slideclick*-320},{duration:animate_time,queue:false});
+		
+		
+            //判断上下按钮是否可点击
+            if(slideclick==0){
+                $(".scrollbox #prev").addClass("disabled");
+                $(".scrollbox #next").removeClass("disabled");
+            }else if(slideclick==picnumber){
+                $(".scrollbox #prev").removeClass("disabled");
+                $(".scrollbox #next").addClass("disabled");
+            }else{
+                $(".scrollbox #prev").removeClass("disabled");
+                $(".scrollbox #next").removeClass("disabled");
+            }
+        });
+        //鼠标在小图上悬停时，相关移动
+        $(".scrollpic li").mouseover(function(){		
+		
+            var slidebtn_hover_chi = $(".scrollpic li").index($(this));
+		
+            $(".scrollpic li").removeClass("current");
+            $(this).addClass("current");		
+		
+            $(".focuspic").animate({"marginLeft":slidebtn_hover_chi*-320},{duration:animate_time,queue:false});
+		
+            if(slidebtn_hover_chi!=slideclick);
+		
+            slideclick=slidebtn_hover_chi;
+            //判断上下按钮是否可点击
+            if(slideclick==0){
+                $(".scrollbox #prev").addClass("disabled");
+                $(".scrollbox #next").removeClass("disabled");
+            }else if(slideclick==picnumber){
+                $(".scrollbox #prev").removeClass("disabled");
+                $(".scrollbox #next").addClass("disabled");
+            }else{
+                $(".scrollbox #prev").removeClass("disabled");
+                $(".scrollbox #next").removeClass("disabled");
+            }
+	
+        });	
+
+        //点击向上按钮时
+        $(".scrollbox #prev").click(function(){
+            slideclick=slideclick-1;
+            if(slideclick<0){
+                slideclick=0;
+            }		
+            $(".scrollpic li").eq(slideclick).trigger("dblclick");
+        });
+	
+        //点击向下按钮时
+        $(".scrollbox #next").click(function(){
+            slideclick=slideclick+1;
+            if(slideclick<=picnumber){
+                slideclick=picnumber;
+                $(".scrollpic li").eq(slideclick).trigger("dblclick");
+                $(".scrollpic ul").animate({"marginLeft":(slideclick-2)*-188},{duration:animate_time,queue:false});// 缩略图最后滚动的左侧距离位置 正好4张缩略图显示
+            }else{
+                $(".scrollpic li").eq(0).trigger("dblclick");
+                slideclick = 0
+            }
+            $(".scrollpic li").eq(slideclick).trigger("dblclick");
+        });
+	
+	
+    });
+</script>

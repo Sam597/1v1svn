@@ -1,0 +1,225 @@
+<style>
+    .kmchange dl{ clear:both; padding:5px 0 5px 2px; overflow:hidden;zoom:1;}
+    .kmchange dl dt{ display:block; line-height:30px; height:30px;  font-size:12px; color:#666;width:38px;float:left;  } 
+    .kmchange dl dd a{ line-height:24px;padding:0 5px;height:25px; line-height:25px; text-align:center; word-break:keep-all; float:left; display:inline; margin:4px 10px 0 0; color:#666;}
+    .kmchange dl dd a:hover{ color:#FFF; background:#FF8200;text-decoration:underline;}
+    .kmchange dl dd .kmac{ color:#FFF; background:#FF8200;}
+</style>
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=3 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <div class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></div>
+</YP:list>
+<div class="weizhi">
+    <span class="fl"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span></span>
+    <span class="fr" >
+        <form method="get" action="/Search/index">
+            <input type="text" name="search" class="search" placeholder="请输入搜索信息" value="" />
+            <input type="submit" class="search_btn" value="" />
+        </form>
+    </span>
+</div>
+<div class="xyxq">
+    <div class="ms_left">
+        <div class="kmchange"  id="filter">
+            <!--            <dl>
+                            <dt>学期：</dt>
+                            <dd>
+                                <a  id="t0"  data-id="0" data-parma="term"   href="javascript:;" >不限</a>
+                            <YP:list order="listorder desc" sql="SELECT * FROM tbl_term order by listorder desc">
+                                <a id="t{$r.id}" href="#" data-id="{$r.id}" data-parma="term" >{$r.title}</a>
+                            </YP:list>
+                            </dd>
+                        </dl>-->
+            <dl>
+                <dt>年级：</dt>
+                <dd>
+                    <a  id="g0"  data-id="0" data-parma="grade"   href="javascript:;" >不限</a>
+                <YP:list order="listorder desc" sql="SELECT * FROM tbl_grade order by listorder desc">
+                    <a id="g{$r.id}" href="#" data-id="{$r.id}" data-parma="grade" >{$r.name}</a>
+                </YP:list>
+                </dd>
+            </dl>
+            <dl>
+                <dt>科目：</dt>
+                <dd>
+                    <a  id="c0"  data-id="0" data-parma="course"   href="javascript:;" >不限</a>
+                <YP:list order="listorder desc" sql="SELECT * FROM tbl_course where grade_id=$grade order by listorder desc">
+                    <a id="c{$r.id}" href="#" data-id="{$r.id}"  data-parma="course" >{$r.name}</a>
+                </YP:list>
+                </dd>
+            </dl>
+           <!-- <dl>
+                <dt>区域：</dt>
+                <dd>
+                    <a  id="a0"  data-id="0" data-parma="area"   href="javascript:;" >不限</a>
+                <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where siteid=$mysiteid and level=2 order by listorder desc">
+                    <a id="a{$r.id}" href="#" data-id="{$r.id}" data-parma="area" >{$r.name}</a>
+                </YP:list>
+                </dd>
+            </dl>
+            <dl>
+                <dt>校区：</dt>
+                <dd>
+                    <a  id="s0"  data-id="0" data-parma="school"   href="javascript:;" >不限</a>
+                <YP:list order="listorder desc" sql="SELECT * FROM tbl_site where areaid=$area and level=3 order by listorder desc">
+                    <a id="s{$r.id}" href="#" data-id="{$r.id}" data-parma="school" >{$r.name}</a>
+                </YP:list>
+                </dd>
+            </dl>
+           
+            <dl>
+                <dt>类型：</dt>
+                <dd>
+                    <a  id="l0"  data-id="0" data-parma="level"   href="javascript:;" >不限</a>
+                <YP:list order="listorder desc" sql="SELECT * FROM tbl_level order by listorder desc">
+                    <a id="l{$r.id}" href="#" data-id="{$r.id}" data-parma="level" >{$r.name}</a>
+                </YP:list>
+                </dd>
+            </dl> -->
+
+        </div>
+        <h3 class="title23">开班计划</h3>
+        <div class="ms">
+
+            <volist name="list" id="r">
+                <div class="xyxq">
+                    <div class="xy_left2">
+                        <div class="xt_picbox3">
+                            <a href="{$r.url}" target="_blank">
+                                <img src="{$r.thumb}" width="200" height="150" style="position:absolute">
+                            </a>
+                        </div> 
+                    </div>
+                    <div class="xy_right">
+                        <div class="rw_right">
+                            <p class="anli_title4"><a href="{$r.url}" target="_blank"  style="color:#ff6600;font-weight: bold;">{$r.title}</a></p>
+                            <p class="p22">年级：{$r.grade}   科目：{$r.course}</p>
+                            <p class="p22">类型：{$r.level}</p>
+                            <div class="zixu1">
+                                <div class="zx_fot1">
+                                    <div class="zx_top1">
+                                        <p class="p21">
+                                            {$r.desc}
+                                            <a href="{$r.url}" class="span20">[详细]</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </volist>
+
+            <div class="page" style="padding-top:20px">
+                <div id="pages" class="page">{$pages}</div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--名师left end-->
+    <div class="ms_right">
+        <h3 class="title24">光荣榜单</h3>
+        <div class="mstj2">
+            <YP:list order="listorder desc" sql="SELECT * FROM tbl_chengonganli where siteid=$mysiteid and catid=46 limit 3">
+                <dl>
+                    <dt> <a href="{$r.url}" title="{$r.title}" target="_blank">
+                        <img src="{$r.thumb}" width="100" height="75"/></a></dt>
+                    <dd class="dd02"><a href="{$r.url}" title="{$r.title}" target="_blank">{$r.title}</a></dd>
+                    <dd>来自：{$r.student_school}</dd>
+                    <dd>考入：{$r.admission}</dd>
+                </dl>
+            </YP:list>
+        </div>
+        <!--名师推荐 end--> 
+        <h3 class="title24">进步典范</h3>
+        <div class="mstj2">
+            <YP:list order="listorder desc" sql="SELECT * FROM tbl_chengonganli where siteid=$mysiteid and catid=47 limit 3">
+                <dl>
+                    <dt> <a href="{$r.url}" title="{$r.title}" target="_blank">
+                        <img src="{$r.thumb}" width="100" height="75"/></a></dt>
+                    <dd class="dd02"><a href="{$r.url}" title="{$r.title}" target="_blank">{$r.title}</a></dd>
+                    <dd>来自：{$r.oldscore}</dd>
+                    <dd>考入：{$r.nowscore}</dd>
+                </dl>
+            </YP:list>
+        </div>
+    </div>
+</div>
+<script>
+    $('#g'+{$grade}).addClass('kmac');
+    $('#t'+{$term}).addClass('kmac');
+    $('#a'+{$area}).addClass('kmac');
+    $('#s'+{$school}).addClass('kmac');
+    $('#l'+{$level}).addClass('kmac');
+    $('#f'+{$show}).addClass('kmac');
+    //科目多选
+    var arrC='{$course}'.split(',');
+    for(var k in arrC){
+        $('#c'+arrC[k]).addClass('kmac');
+    }
+    $('#filter a').click(function(){
+        var urlStr='',curl=getRequest(),
+        id=$(this).data('id').toString(),
+        parma=$(this).data('parma');
+        //处理课程多选
+        if(parma=='course'){
+            if(curl['course']){
+                if(0==id){
+                    curl['course']=0;
+                }else{ 
+                    if(0==curl['course']){
+                        curl['course']=id;
+                    }else{
+                        arrCourse=curl['course'].split(',');
+                        if('-1'==jQuery.inArray(id, arrCourse)){
+                            curl['course']=curl['course']+','+id;
+                        }else{
+                            arrCourse[jQuery.inArray(id, arrCourse)]=undefined;
+                            var courseStr='';
+                            for(var k in arrCourse){
+                                if(undefined!=arrCourse[k]){
+                                    courseStr+=arrCourse[k]+',';
+                                } 
+                            }
+                            curl['course']=courseStr.slice(0,-1);
+                        }       
+                    }
+                }
+            }else{
+                curl[parma]=id;
+            }
+        }else{
+            curl[parma]=id;//赋值或修改参数
+        }
+        //选择年纪清空科目
+        if('grade'==parma){
+            curl['course']=0;
+        }
+        //选择区域清空校区
+        if('area'==parma){
+            curl['school']=0;
+        }
+        //组合url
+        for(var key in curl){
+            urlStr+=key+'='+curl[key]+'&'; 
+        }
+        window.location.href='/kecheng/?'+urlStr.slice(0,-1);
+    })
+    
+    //获取当前参数并转化数组
+    function getRequest()  
+    {  
+        var url = location.search; //获取url中"?"符后的字串  
+        var theRequest = new Array();  
+        if(url.indexOf("?") != -1)  
+        {  
+            var str = url.substr(1);  
+            strs = str.split("&");  
+            for(var i = 0; i < strs.length; i ++)  
+            {  
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+            }  
+        }  
+        return theRequest;  
+    }  
+</script>

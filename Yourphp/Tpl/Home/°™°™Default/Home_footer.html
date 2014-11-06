@@ -1,0 +1,65 @@
+<div class="c"></div>
+<br>
+
+</div></div>
+
+<div id="footer" class="warp">
+    <div class="clear hide footer">
+        <p class="p12 aboutlist" style="padding-top: 15px">
+        <YP:list order="listorder desc" where="siteid=$mysiteid"  catid="8" limit="16">
+            <a href="{$r.url}" <if condition="$r.id eq $id">class="aCur1"</if>  title="{$r.title}">{$r.title|str_cut=###,15}</a> <span>|</span> 
+        </YP:list>
+        </p>
+
+       
+       <p class="p11">
+            <img src="/Yourphp/Tpl/Home/Default/Public/images/footer01.jpg"><img src="/Yourphp/Tpl/Home/Default/Public/images/footer02.jpg"><img src="/Yourphp/Tpl/Home/Default/Public/images/footer03.jpg"><img src="/Yourphp/Tpl/Home/Default/Public/images/footer04.jpg">
+        
+</p>
+ <p class="p12  style="padding-bottom: 15px"">
+            新王牌教育 2000-2013 www.xwp.cn 为进步提供动力
+ </p>       
+ <p class="p12" style="padding-bottom: 15px">
+            国家信产部互联网备案号：沪ICP备05008600号&nbsp;法律顾问:上海应氏律师事务所
+ </p>
+ <p class="p12" style="padding-bottom: 15px">
+<script src="http://s15.cnzz.com/stat.php?id=2671631&web_id=2671631&show=pic1" language="JavaScript"></script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F59d30caa0b643af0e507ec27bc9b7cc4' type='text/javascript'%3E%3C/script%3E"));
+</script><div id="fenxiang">
+<!-- Baidu Button BEGIN -->
+    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+        <a class="bds_qzone"></a>
+        <a class="bds_tsina"></a>
+        <a class="bds_tqq"></a>
+        <a class="bds_renren"></a>
+        <span class="bds_more">更多</span>
+		<a class="shareCount"></a>
+    </div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&uid=733737" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+</script>
+<!-- Baidu Button END -->
+</div>
+
+</p>
+
+
+ </div>
+
+</div>
+
+</div>
+</div>
+<!--<script>showon('.catlist ul li.folder','span.fd_ico','{$catid}');</script>-->
+<script>
+    $('#c{$catid}').find('a').addClass('aCur1');
+    $('.aboutlist span:last').remove();
+
+</script>
+
+</body>
+</html>

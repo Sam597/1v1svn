@@ -1,0 +1,28 @@
+
+
+<form method='post' name="myform" id="myform" action="<if condition="$action_name=='areaadd'">{:U($module_name.'/areainsert')}<else />{:U($module_name.'/areaupdate')}</if>">
+<table cellpadding=0 cellspacing=0 class="table_form" width="100%">
+
+
+    <tr>
+        <td>区域名称</td>
+        <td><input type="text" class="input-text"  name="name" id="name" value="{$vo.name}"  validate="required:true, minlength:2, maxlength:50"></td>
+    </tr>
+    <!--<tr>
+            <td>区域域名名称</td>
+            <td><input type="text" class="input-text"  name="domain" id="domain" value="{$vo.domain}"  validate="required:true, minlength:2, maxlength:100"></td>
+    </tr>-->
+
+</table>
+<div class="btn">
+    <if condition="$vo[id]!=''"><input TYPE="hidden" name="id" value="{$vo.id}"></if>
+    <input TYPE="hidden" name="siteid" value="{$siteid}">
+    <input type="hidden" name="forward" value="{$_SERVER['HTTP_REFERER']}" />
+    <INPUT TYPE="submit"  value="{:L('dosubmit')}" class="button" >
+    <input TYPE="reset"  value="{:L('reset')}" class="button">
+</div>
+</form>
+</div>
+
+
+</body></html>

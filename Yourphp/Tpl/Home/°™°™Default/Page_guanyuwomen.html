@@ -1,0 +1,19 @@
+<div class="left">
+    <div class="cont02">
+        <div class="cont_left fl">
+
+            <h3 class="title06">{$title}</h3>
+
+            {$content}            
+        </div>
+        <div class="cont_right fr">
+            <h3 class="title04">关于我们</h3>
+            <ul class="kclist">
+                <YP:subcat  catid="8" key="r" self="0">
+                    <li  id="c{$r['id']}"><a href="{$r.url}">{$r.catname}</a></li>
+                </YP:subcat>
+            </ul>
+        </div>
+    </div>
+    <!--cont part02 end-->
+</div>

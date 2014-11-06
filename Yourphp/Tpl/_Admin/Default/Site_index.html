@@ -1,0 +1,37 @@
+
+
+<form  id="myform" name="myform" action="{:U('Area/listorder')}" method="post">
+    <div class="table-list">
+        <table width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th width="40">{:L('listorder')}</th>
+                    <th width="20">id</th>
+                    <th align="left">站点名称</th>
+                    <th align="left">站点域名</th>	
+                    <th width="270">{:L('manage')}</th>
+                </tr>
+            </thead>
+            <tbody>
+            <volist name="sitelist" id="vo" key="k">
+                <tr>
+                    <td  width="40" align='center'><input name="listorders[{$vo['id']}]" type='text' size='3' value="{$vo['listorder']}"></td>
+                    <td align='center'>{$vo['id']}</td>
+                    <td >{$vo['name']}</td>
+                    <td >{$vo['domain']}</td>
+                    <td align="center">
+                        <a href="{:U('Site/arealist',array(siteid=>$vo['id']))}">管理区域</a> | 
+                        <a href="{:U('Site/areaadd',array(siteid=>$vo['id']))}">添加区域</a> | 	
+                        <a href="{:U('Site/edit',array(keyid=>$vo['keyid'],id=>$vo['id']))}">{:L('edit')}</a> | 
+<!--                        <a href="javascript:confirm_delete('{:U('Site/delete',array(id=>$vo['id']))}')">{:L('delete')}</a> -->
+                    </td>      		
+                </tr>
+            </volist>
+            </tbody>       
+        </table>
+    </div>
+
+    <div class="btn">  <input  type="button" class="button" name="dosubmit" value="{:L(listorder)}" onclick="myform.action='{:U($module_name.'/listorder')}';$('#myform').submit();" /></div> 
+
+</form></div>
+</body></html>

@@ -1,0 +1,51 @@
+
+<table  class="search_table" width="100%">
+    <tr>
+        <td class="search">
+            <form action="{:U('Content/teacherselect')}" method="post">
+                <input type="text" size="14" class="input-text" name="keyword" value="{$Think.post.keyword}" />
+                <input type="submit" value="{:L('chaxun')}" class="button" />
+                <input type="reset" value="{:L('reset')}" class="button"  />
+            </form>
+        </td>
+
+    </tr>
+</table>
+
+<form name="myteacherselcectform" id="myteacherselcectform" action="" method="post">
+
+    <div class="table-list">
+        <table width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th width="30"></th>
+                    <th width="80">ID</th>
+                    <th align="left">{:L('title')}</th>
+                </tr>
+            </thead>
+            <tbody>
+            <volist name="list" id="vo">
+                <tr>
+                    <td width="30" align="center"><input class="inputcheckbox" name="ids" value="{$vo.id}" type="radio"></td>
+                    <td align="center">{$vo['id']}</td>
+                    <td id="teachername{$vo['id']}">{$vo['title']}</td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+
+    </div>
+    <input type="hidden" id="teacherid" name="teacherid" value="">
+    <input type="hidden" id="teachername" name="teachername" value="">
+</form>
+<div id="pages" class="page">{$page}</div>
+<script type="text/javascript">
+    $(function(){
+        $('.mainnav_title').hide();
+        $(document).on('click','.inputcheckbox',function(){
+            var tid = $(this).val();
+            $('#teacherid').val(tid);
+            $('#teachername').val($('#teachername'+tid).html());
+        })
+    }); 
+</script>

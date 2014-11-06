@@ -1,0 +1,49 @@
+
+
+<form  id="myform" name="myform" action="{:U('Schoolrel/listorder')}" method="post">
+<div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+      		<tr>
+            <th width="40">{:L('listorder')}</th>
+            <th width="*">区域</th>
+            <th align="40">校区</th>	
+			<th width="40" align="left">学期</th>
+			<th width="60">班级</th>
+			<th width="*">科目</th>
+			<th width="40">用户</th>
+			<th width="40">状态</th>
+			<th width="80">{:L('manage')}</th>
+            </tr>
+      	</thead>
+      	<tbody>
+      		<volist name="list" id="vo" key="k">
+      		<tr>
+			<td  width="40" align='center'><input name="listorders[{$vo['id']}]" type='text' size='3' value="{$vo['listorder']}"></td>
+			<td align='center'>{$vo['sitename']}</td>
+			<td >{$vo['schoolname']}</td>
+			<td>{$vo['term']}</td>
+			<td>{$vo['grade']}</td>
+			<td>{$vo['course']}</td>
+			<td>{$vo['username']}</td>
+ 			<td align='center'>
+			<if condition="$vo[status]==1">
+				<a href="{:U('Schoolrel/status',array(typeid=>$vo['typeid'],status=>0))}"><font color="green">{:L('enable')}</font></a>
+			<else />				
+				<a href="{:U('Schoolrel/status',array(typeid=>$vo['typeid'],status=>1))}"><font color="red">{:L('disable')}</font></a>	
+			</if>
+			</td>
+      		<td align="center">
+			<a href="{:U('Schoolrel/edit',array(id=>$vo['id']))}">{:L('edit')}</a> | 
+			<a href="javascript:confirm_delete('{:U('Schoolrel/delete',array(id=>$vo['id']))}')">{:L('delete')}</a> 
+      		</td>      		
+      		</tr>
+      		</volist>
+      	</tbody>       
+      	</table>
+</div>
+
+  <div class="btn">  <input  type="button" class="button" name="dosubmit" value="{:L(listorder)}" onclick="myform.action='{:U($module_name.'/listorder')}';$('#myform').submit();" /></div> 
+
+</form></div>
+</body></html>

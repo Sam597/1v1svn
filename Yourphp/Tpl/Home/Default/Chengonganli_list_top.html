@@ -1,0 +1,105 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=5 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <div class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></div>
+</YP:list>
+<div class="weizhi">
+    <span class="fl">{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" > " /></span>
+    <span class="fr" >
+        <form method="get" action="/Search/index">
+            <input type="text" name="search" class="search" placeholder="请输入搜索信息" value="" />
+            <input type="submit" class="search_btn" value="" />
+        </form>
+    </span>
+</div>
+<div class="anlibox">
+    <div class="anli_left">
+        <p class="p20"><img src="/Yourphp/Tpl/Home/Default/Public/images/icon20.jpg" /></p>
+        <ul class="ul10">
+            <YP:subcat catid="24" id="cid" key="ii">
+                <li id="c{$cid['id']}" <if condition="$cid['id'] eq $catid">class="liCur20"</if>   ><a href="{$cid['url']}" >{$cid['catname']}</a></li>
+            </YP:subcat>
+
+        </ul>
+    </div>
+    <div class="anli_right">
+        <h3 class="title25">
+<!--            <span><a href="/top30/?year=2013">2013</a></span>-->
+            <span class="spanH2"><a href="/top30/?year=2014">2014</a></span>
+            <span><a href="/top30/?year=2013">2013</a></span>
+            <span><a href="/top30/?year=2012">2012</a></span>
+            <span><a href="/top30/?year=2011">2011</a></span>
+            <span><a href="/top30/?year=2010">2010</a></span>
+<!--            <span><a href="/top30/?year=2009">2009</a></span>-->
+        </h3>
+        <div class="anlicont" style="font-size:12px">
+            <div class="list_sc sc01" style="margin-left:0">
+                <table cellpadding="0" cellspacing="0" class="tab02">
+                    <tr>
+                        <td>排名</td>
+                        <td>姓名</td>
+                        <td>考试成绩</td>
+                        <td>录取学校</td>
+                    </tr>
+                    <?php $year = $_GET["year"]?intval($_GET["year"]):2014; ?>
+                    <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=$year and subcatid=3 order by score desc limit 30">
+                        <tr>
+                            <td>{$i}</td>
+                            <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                            <td>{$r.score}分</td>
+                            <td>{$r.admission}</td>
+                        </tr>
+                    </YP:list>
+                </table>
+                <div class="sc_bootom"></div>
+            </div>
+            <div class="list_sc sc02">
+                <table cellpadding="0" cellspacing="0" class="tab02">
+                    <tr>
+                        <td>排名</td>
+                        <td>姓名</td>
+                        <td>考试成绩</td>
+                        <td>录取学校</td>
+                    </tr>
+                    <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=$year and subcatid=2 order by score desc limit 30">
+                        <tr>
+                            <td>{$i}</td>
+                            <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                            <td><?php echo intval($r['score'])?>分</td>
+                            <td>{$r.admission}</td>
+                        </tr>
+                    </YP:list>
+                </table>
+                <div class="sc_bootom"></div>
+            </div>
+            <div class="list_sc sc03">
+                <table cellpadding="0" cellspacing="0" class="tab02">
+                    <tr>
+                        <td>排名</td>
+                        <td>姓名</td>
+                        <td>考试成绩</td>
+                        <td>录取学校</td>
+                    </tr>
+                    <YP:list sql="SELECT * FROM tbl_chengonganli where posid=1 and siteid=$mysiteid and year=$year and subcatid=1 order by score desc limit 30">
+                        <tr>
+                            <td>{$i}</td>
+                            <td><a href="{$r.url}" target="_blank">{$r.title}</a></td>
+                            <td>{$r.score}分</td>
+                            <td>{$r.admission}</td>
+                        </tr>
+                    </YP:list>
+                </table>
+                <div class="sc_bootom"></div>
+            </div>
+        </div>
+        <!--renwu xinxi-->
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function(){
+        $('#nav_0 a').removeClass();
+        $('#nav_24 a').addClass('NaCur');
+        '<?php echo $_GET["year"] ?>'?$('.title25 span').removeClass()&&$('.title25 span a[href="/top30/?year=<?php echo $_GET["year"] ?>"]').parent().addClass('spanH2'):'';
+    })
+</script>

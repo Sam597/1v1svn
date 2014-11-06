@@ -1,0 +1,38 @@
+<YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=5 and  siteid=$mysiteid  order by listorder desc  limit 1">
+    <div class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></div>
+</YP:list>
+<div class="weizhi">
+    <span class="fl"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt 搜索结果</span></span>
+    <span class="fr" >
+        <form method="get" action="/Search/index">
+            <input type="text" name="search" class="search" placeholder="请输入搜索信息" value="" />
+            <input type="submit" class="search_btn" value="" />
+        </form>
+    </span>
+</div>
+<div class="xyxq">
+    <div class="ms_left">
+        <h3 class="title04">搜索结果</h3>
+        <ul class="ul03">
+            <volist name="list" id="r">
+                <li><a href="{$r.url}" target="_blank">{$r.title} </a><span>{$r.updatetime|date='Y-m-d',###}</span></li>
+            </volist>
+        </ul>
+        <div id="pages" class="page">{$pages}</div>
+
+    </div>
+    <!--名师left end-->
+    <div class="ms_right">
+        <p class="pjj" style="padding-top:10px; border-top:1px dashed #CCC;"><img src="/Yourphp/Tpl/Home/Default/Public/images/jiajiao.jpg" /></p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

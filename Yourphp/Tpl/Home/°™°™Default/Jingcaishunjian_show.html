@@ -1,0 +1,35 @@
+<div class="warp">
+    <YP:list order="listorder desc" sql="SELECT * FROM tbl_ad where postion=2 and  siteid=$mysiteid  order by listorder desc  limit 1">
+        <p class="banner"><a href="{$r.jumpurl}"><img src="{$r.adpic}" data-pinit="registered"></a></p>
+    </YP:list>
+    <div class="cont02">
+        <div class="cont_left fl">
+<!--            <h3 class="title03"><span>{:L(catpos)} <a href="{:URL()}">{:L(home_font)}</a> &gt <YP:catpos  catid="catid" space=" &gt; " /></span></h3>-->
+            <div class="bdlist">
+<!--                <h3 class="mainTitle" style="margin:5px 0 25px 0">{$title}   </h3>-->
+                <div class="picbox hide">
+                    <ul>
+                        <volist name="pic" id="vo">
+                            <li class="current"><a href="#"><img width="200" height="150" src="{$vo['filepath']}" /></a></li>
+                        </volist>
+                    </ul>
+                </div>
+                <div class="content">                    {$content}
+                </div>
+            </div>
+        </div>
+        <div class="cont_right fr">
+            <h3 class="title04">精彩瞬间</h3>
+            <ul class="kclist">
+
+                <YP:list order="listorder desc" where="siteid=$mysiteid" catid="44" limit="16">
+                    <li>
+                        <a href="{$r.url}" <if condition="$r.id eq $id">class="aCur1"</if>  title="{$r.title}">{$r.title|str_cut=###,15}</a>
+                    </li>
+                </YP:list>
+
+            </ul>
+        </div>
+    </div>
+</div>
+

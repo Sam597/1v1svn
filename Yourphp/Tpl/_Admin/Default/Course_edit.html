@@ -1,0 +1,35 @@
+
+
+<form method='post' name="myform" id="myform" action="{:U($module_name.'/courseupdate')}">
+    <table cellpadding=0 cellspacing=0 class="table_form" width="100%">
+
+
+        <tr>
+            <td>所属年级:</td>
+            <td>
+                <select name="grade_id"> 
+                    <volist name="gradelist" id="vo">
+                        <option value="{$vo.id}" <if condition="$vo['id'] eq $course['grade_id']"> selected="selected"</if>>{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>学科名称:</td>
+            <td><input type="text" class="input-text"  name="name" id="name" value="{$course.name}"  validate="required:true, minlength:2, maxlength:50"></td>
+        </tr>
+
+
+    </table>
+    <div class="btn">
+        <input TYPE="hidden" name="id" value="{$course.id}">
+        <input type="hidden" name="forward" value="{$_SERVER['HTTP_REFERER']}" />
+        <INPUT TYPE="submit"  value="{:L('dosubmit')}" class="button" >
+        <input TYPE="reset"  value="{:L('reset')}" class="button">
+    </div>
+</form>
+</div>
+
+
+</body></html>
